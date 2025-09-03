@@ -1,0 +1,40 @@
+# Ansible core
+*.retry
+ansible.log
+.ansible/
+.ansible_vault_password_file
+
+# Ansible vault passwords
+.vault_pass
+
+# Ansible collections and roles
+collections/
+.ansible-collections/
+
+# Python files
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.orig
+
+# OS files
+.DS_Store
+
+# SSH keys and secrets
+*.pem
+*.key
+id_*
+!*.key.pub
+
+# Local environment overrides
+.env
+.env.local
+local_vars.yaml
+local_vars.yml

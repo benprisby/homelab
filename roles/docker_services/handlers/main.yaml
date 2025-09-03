@@ -1,0 +1,8 @@
+---
+- name: Restart Docker services
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_path }}/{{ item }}"
+    state: restarted
+  loop: "{{ docker_services }}"
+  become: true
+  become_user: "{{ ansible_user }}"

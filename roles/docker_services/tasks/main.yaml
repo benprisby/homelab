@@ -1,0 +1,62 @@
+---
+- name: Create service directories for each Docker service
+  ansible.builtin.file:
+    path: "{{ docker_projects_path }}/{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  loop: "{{ docker_services }}"
+
+- name: Copy service configurations and Compose files
+  ansible.builtin.copy:
+    src: "{{ item }}/"
+    dest: "{{ docker_projects_path }}/{{ item }}/"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: preserve
+  loop: "{{ docker_services }}"
+  notify: Restart Docker services
+
+- name: Create template subdirectories
+  ansible.builtin.file:
+    path: "{{ docker_projects_path }}/{{ item.path }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  with_community.general.filetree: "templates/"
+  when:
+    - item.state == "directory"
+    - item.path.split("/")[0] in docker_services
+
+- name: Template service configurations
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ docker_projects_path }}/{{ item.path | splitext | first }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  with_community.general.filetree: "templates/"
+  when:
+    - item.state == "file"
+    - item.path.split("/")[0] in docker_services
+  notify: Restart Docker services
+
+- name: Start Docker services
+  community.docker.docker_compose_v2:
+    project_src: "{{ docker_projects_path }}/{{ item }}"
+    state: present
+    pull: always
+  loop: "{{ docker_services }}"
+  become: true
+  become_user: "{{ ansible_user }}"
+
+- name: Prune Docker
+  community.docker.docker_prune:
+    containers: true
+    images: true
+    networks: true
+    builder_cache: true
+  become: true
+  become_user: "{{ ansible_user }}"

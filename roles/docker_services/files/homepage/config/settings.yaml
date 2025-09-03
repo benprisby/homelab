@@ -1,0 +1,10 @@
+---
+title: Vice City Home Lab
+theme: dark
+color: neutral
+favicon: https://benprisby.com/favicon.ico
+
+layout:
+  Monitoring:
+    style: row
+    columns: 4

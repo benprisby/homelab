@@ -1,0 +1,151 @@
+---
+# Generated at: {{ ansible_date_time.iso8601 }}
+
+- Monitoring:
+  - Grafana:
+      icon: grafana
+      href: https://grafana.home.benprisby.com/dashboards
+      description: Server dashboards
+      server: big-slice
+      container: grafana
+      showStats: true
+
+  - Prometheus:
+      icon: prometheus
+      href: https://prometheus.home.benprisby.com
+      description: Monitoring database
+      server: big-slice
+      container: prometheus
+      showStats: true
+
+  - Graylog:
+      icon: graylog
+      href: https://graylog.home.benprisby.com
+      description: Centralized log server
+      server: big-slice
+      container: graylog
+      showStats: true
+
+  - Portainer:
+      icon: portainer
+      href: https://portainer.home.benprisby.com
+      description: Docker container management
+      server: big-slice
+      container: portainer
+      showStats: true
+
+- Network:
+  - Unifi:
+      icon: unifi-controller
+      href: https://unifi/network/default/dashboard
+      description: Network controller
+      widget:
+        type: unifi
+        url: https://unifi
+        username: {{ vault_unifi_monitoring_username }}
+        password: {{ vault_unifi_monitoring_password }}
+
+  - AdGuard Home (Primary):
+      icon: adguard-home
+      href: https://adguard1.home.benprisby.com
+      description: Main VLAN primary DNS
+      server: small-slice-01
+      container: adguard-home
+      widget:
+        type: adguard
+        url: https://adguard1.home.benprisby.com
+        username: {{ vault_adguard_username }}
+        password: {{ vault_adguard_password }}
+
+  - AdGuard Home (Secondary):
+      icon: adguard-home
+      href: https://adguard2.home.benprisby.com
+      description: Main VLAN secondary DNS
+      server: small-slice-02
+      container: adguard-home
+      widget:
+        type: adguard
+        url: https://adguard2.home.benprisby.com
+        username: {{ vault_adguard_username }}
+        password: {{ vault_adguard_password }}
+
+  - External AdGuard Home (Primary):
+      icon: adguard-home
+      href: https://adguard3.home.benprisby.com
+      description: External VLANs primary DNS
+      server: small-slice-03
+      container: adguard-home
+      widget:
+        type: adguard
+        url: https://adguard3.home.benprisby.com
+        username: {{ vault_adguard_username }}
+        password: {{ vault_adguard_password }}
+
+  - External AdGuard Home (Secondary):
+      icon: adguard-home
+      href: https://adguard4.home.benprisby.com
+      description: External VLANs secondary DNS
+      server: small-slice-04
+      container: adguard-home
+      widget:
+        type: adguard
+        url: https://adguard4.home.benprisby.com
+        username: {{ vault_adguard_username }}
+        password: {{ vault_adguard_password }}
+
+- Servers:
+  - NAS:
+      icon: synology
+      href: https://nas.home.benprisby.com
+      description: Synology web interface
+      widget:
+        type: diskstation
+        url: https://nas.home.benprisby.com
+        username: {{ vault_nas_monitoring_username }}
+        password: {{ vault_nas_monitoring_password }}
+
+  - Nginx Proxy Manager:
+      icon: nginx-proxy-manager
+      href: https://nginx.home.benprisby.com
+      description: Reverse proxy for home services
+      server: big-slice
+      container: nginx-proxy-manager
+      widget:
+        type: npm
+        url: https://nginx.home.benprisby.com
+        username: {{ vault_nginx_username }}
+        password: {{ vault_nginx_password }}
+
+  - Kiwix:
+      icon: kiwix
+      href: https://kiwix.home.benprisby.com
+      description: Wikipedia archive
+      server: nas
+      container: kiwix-serve
+
+- Smart Home:
+  - Homebridge:
+      icon: homebridge
+      href: https://homebridge.home.benprisby.com
+      description: Bridge for non-HomeKit devices
+      server: big-slice
+      container: homebridge
+      widget:
+        type: homebridge
+        url: https://homebridge.home.benprisby.com
+        username: {{ vault_homebridge_username }}
+        password: {{ vault_homebridge_password }}
+
+  - 3D Printer:
+      icon: octoprint
+      href: https://octoprint.home.benprisby.com
+      description: Prusa MK3S management
+      widget:
+        type: octoprint
+        url: https://octoprint.home.benprisby.com
+        key: {{ vault_octoprint_api_key }}
+
+  - Laser Printer:
+      icon: brother
+      href: https://laserprinter.home.benprisby.com
+      description: Brother HL-L3280CDW web interface

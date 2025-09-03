@@ -1,0 +1,12 @@
+---
+services:
+  homebridge:
+    image: homebridge/homebridge:latest
+    container_name: homebridge
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - homebridge_data:/homebridge
+
+volumes:
+  homebridge_data:

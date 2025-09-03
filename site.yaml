@@ -1,0 +1,31 @@
+---
+- name: Configure all hosts
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Setup Docker on all Docker hosts
+  hosts: docker_hosts
+  become: true
+  roles:
+    - geerlingguy.docker
+
+- name: Deploy Docker services
+  hosts: docker_hosts
+  become: true
+  roles:
+    - docker_services
+
+- name: Deployment summary
+  hosts: all
+  become: false
+  tasks:
+    - name: Display deployment summary
+      ansible.builtin.debug:
+        msg: |
+          Host: {{ inventory_hostname }}
+          Hardware: {{ hardware.model }}
+          IP: {{ ansible_host }}
+          Docker Services: {{ docker_services | default([]) | sort | join(', ') }}
+          Status: Deployment Complete

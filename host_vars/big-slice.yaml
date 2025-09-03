@@ -1,0 +1,13 @@
+---
+# Main infrastructure server
+hardware:
+  model: Intel NUC
+  type: nuc
+
+docker_services:
+  - graylog
+  - homebridge
+  - homepage
+  - monitoring
+  - nginx-proxy-manager
+  - portainer

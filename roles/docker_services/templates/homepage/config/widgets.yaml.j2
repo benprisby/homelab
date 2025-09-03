@@ -1,0 +1,40 @@
+---
+# Generated at: {{ ansible_date_time.iso8601 }}
+
+- greeting:
+    text_size: 3xl
+    text: Vice City Home Lab
+
+- logo:
+    icon: https://raw.githubusercontent.com/benprisby/vice-city-dashboard/b73c084ef0597b3ad9083439e6b26bedef22ed7c/resources/images/vice-city.png
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    cputemp: true
+    tempmin: 0
+    tempmax: 100
+    uptime: true
+
+- datetime:
+    text_size: md
+    format:
+      dateStyle: full
+      timeStyle: short
+      hour12: true
+
+- openweathermap:
+    latitude: {{ vault_openweathermap_latitude }}
+    longitude: {{ vault_openweathermap_longitude }}
+    units: imperial
+    provider: openweathermap
+    apiKey: {{ vault_openweathermap_api_key }}
+    cache: 5
+    format:
+      maximumFractionDigits: 1
+
+- search:
+    provider: google
+    showSearchSuggestions: true
+    target: _blank

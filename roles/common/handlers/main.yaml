@@ -1,0 +1,4 @@
+---
+- name: Reboot required
+  ansible.builtin.debug:
+    msg: "⚠️ Reboot required for {{ inventory_hostname }}"
