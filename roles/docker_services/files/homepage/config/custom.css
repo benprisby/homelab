@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif !important;
+}
+
+.font-light {
+    font-weight: 400 !important;
+}
+
+.font-thin {
+    font-weight: 300 !important;
+}

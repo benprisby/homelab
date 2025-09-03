@@ -1,0 +1,42 @@
+---
+- name: Update all systems
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache and upgrade packages
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        upgrade: full
+        autoremove: true
+
+    - name: Pull latest Docker images for services
+      community.docker.docker_compose_v2:
+        project_src: "{{ docker_projects_path }}/{{ item }}"
+        state: present
+        pull: always
+      loop: "{{ docker_services }}"
+      when: docker_services is defined
+      become: true
+      become_user: "{{ ansible_user }}"
+
+    - name: Prune Docker
+      community.docker.docker_prune:
+        containers: true
+        images: true
+        networks: true
+        builder_cache: true
+      when: docker_services is defined
+      become: true
+      become_user: "{{ ansible_user }}"
+
+    - name: Check if reboot is required
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+      register: reboot_required
+
+    - name: Notify about reboot requirement
+      ansible.builtin.debug:
+        msg: "⚠️ Reboot required for {{ inventory_hostname }}"
+      when: reboot_required.stat.exists

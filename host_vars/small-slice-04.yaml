@@ -1,0 +1,11 @@
+---
+# Pi cluster server 4
+hardware:
+  model: Raspberry Pi 4
+  type: raspberry_pi
+
+docker_services:
+  - adguard
+  - dockerproxy
+  - monitoring-agent
+  - portainer-agent

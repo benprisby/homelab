@@ -1,0 +1,25 @@
+---
+# Generated at: {{ ansible_date_time.iso8601 }}
+
+big-slice:
+  socket: /var/run/docker.sock
+
+nas:
+  host: 10.20.0.10
+  port: 2375
+
+small-slice-01:
+  host: {{ hostvars['small-slice-01']['ansible_host'] }}
+  port: 2375
+
+small-slice-02:
+  host: {{ hostvars['small-slice-02']['ansible_host'] }}
+  port: 2375
+
+small-slice-03:
+  host: {{ hostvars['small-slice-03']['ansible_host'] }}
+  port: 2375
+
+small-slice-04:
+  host: {{ hostvars['small-slice-04']['ansible_host'] }}
+  port: 2375

@@ -1,0 +1,52 @@
+---
+- name: Install common packages
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    name: "{{ common_packages }}"
+    state: present
+
+- name: Add SSH public key to authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ ansible_user }}"
+    key: "{{ ssh_public_key }}"
+    state: present
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+
+- name: Configure system limits
+  community.general.pam_limits:
+    domain: "{{ ansible_user }}"
+    limit_type: soft
+    limit_item: nofile
+    value: 65536
+
+- name: Configure Raspberry Pi PoE Hat fan speeds
+  ansible.builtin.blockinfile:
+    path: /boot/firmware/config.txt
+    prepend_newline: true
+    block: |
+      [all]
+      # PoE Hat Fan Speeds
+      dtparam=poe_fan_temp0=50000
+      dtparam=poe_fan_temp1=60000
+      dtparam=poe_fan_temp2=70000
+      dtparam=poe_fan_temp3=80000
+  when: hardware.type == "raspberry_pi"
+  notify: Reboot required
+  become: true
+
+- name: Enable cgroups on Raspberry Pi
+  ansible.builtin.replace:
+    path: /boot/firmware/cmdline.txt
+    regexp: '^([\w](?!.*\b{{ item }}\b).*)$'
+    replace: '\1 {{ item }}'
+  loop:
+    - cgroup_enable=cpuset
+    - cgroup_enable=memory
+    - cgroup_memory=1
+  when: hardware.type == "raspberry_pi"
+  notify: Reboot required
+  become: true

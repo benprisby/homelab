@@ -1,0 +1,111 @@
+---
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro"
+      - "prometheus_data:/prometheus"
+    ports:
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - monitoring
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yaml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=90d"
+      - "--web.enable-admin-api"
+      - "--web.enable-lifecycle"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - "grafana_data:/var/lib/grafana"
+    ports:
+      - "3300:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    networks:
+      - monitoring
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - "/:/host:ro,rslave"
+      - "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
+    command:
+      - "--path.rootfs=/host"
+      - "--collector.processes"
+      - "--collector.systemd"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: cadvisor
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker:/var/lib/docker:ro"
+      - "/dev/disk:/dev/disk:ro"
+      - "/etc/machine-id:/etc/machine-id:ro"
+    devices:
+      - /dev/kmsg
+    ports:
+      - "8080:8080"
+    networks:
+      - monitoring
+
+  speedtest-exporter:
+    image: miguelndecarvalho/speedtest-exporter
+    container_name: speedtest-exporter
+    restart: unless-stopped
+    ports:
+      - "9798:9798"
+    networks:
+      - monitoring
+    healthcheck:
+      test: "wget --no-verbose --tries=1 --spider http://127.0.0.1:9798/"
+      timeout: 10s
+
+  unpoller:
+    image: ghcr.io/unpoller/unpoller:latest
+    container_name: unpoller
+    restart: unless-stopped
+    ports:
+      - "9130:9130"
+    environment:
+      - UP_INFLUXDB_DISABLE=true
+      - UP_POLLER_DEBUG=false
+      - UP_UNIFI_DYNAMIC=false
+      - UP_PROMETHEUS_HTTP_LISTEN=0.0.0.0:9130
+      - UP_PROMETHEUS_NAMESPACE=unpoller
+      - UP_UNIFI_CONTROLLER_0_SAVE_ALARMS=true
+      - UP_UNIFI_CONTROLLER_0_SAVE_ANOMALIES=true
+      - UP_UNIFI_CONTROLLER_0_SAVE_DPI=true
+      - UP_UNIFI_CONTROLLER_0_SAVE_EVENTS=true
+      - UP_UNIFI_CONTROLLER_0_SAVE_IDS=true
+      - UP_UNIFI_CONTROLLER_0_SAVE_SITES=true
+      - UP_UNIFI_CONTROLLER_0_URL=${UNIFI_URL}
+      - UP_UNIFI_CONTROLLER_0_USER=${UNIFI_USER}
+      - UP_UNIFI_CONTROLLER_0_PASS=${UNIFI_PASS}
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+
+volumes:
+  prometheus_data:
+  grafana_data:

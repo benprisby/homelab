@@ -1,0 +1,31 @@
+---
+# Basic environment setup
+ansible_python_interpreter: /usr/bin/python3
+timezone: America/New_York
+ssh_public_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqPuTyh0IOltid4FiEH76niboJvZ0iIGp2C/H1jtXwy ben@benprisby.com"
+common_packages:
+  - avahi-daemon
+  - build-essential
+  - ca-certificates
+  - curl
+  - dnsutils
+  - git
+  - python-is-python3
+  - python3
+  - python3-debian
+  - python3-pip
+  - unattended-upgrades
+  - vim
+
+# Docker configuration
+docker_projects_path: "/home/{{ ansible_user }}/docker"
+docker_users:
+  - "{{ ansible_user }}"
+docker_daemon_options:
+  log-driver: syslog
+  log-opts:
+    syslog-address: "udp://{{ hostvars['big-slice']['ansible_host'] }}:5140"
+    syslog-facility: daemon
+    syslog-format: rfc5424micro
+    tag: "{{ '{{.DaemonName}}/{{.Name}}/{{.ID}}' | string }}"
+  metrics-addr: "0.0.0.0:9323"
