@@ -5,7 +5,7 @@
   roles:
     - common
 
-- name: Setup Docker on all Docker hosts
+- name: Set up Docker on all Docker hosts
   hosts: docker_hosts
   become: true
   roles:
