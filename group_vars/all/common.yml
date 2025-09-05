@@ -1,6 +1,7 @@
 ---
 # Basic environment setup
 ansible_python_interpreter: /usr/bin/python3
+ansible_user: lbp
 timezone: America/New_York
 ssh_public_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqPuTyh0IOltid4FiEH76niboJvZ0iIGp2C/H1jtXwy ben@benprisby.com"
 common_packages:

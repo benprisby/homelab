@@ -1,25 +1,18 @@
-all:
+nuc:
+  hosts:
+    big-slice:
+      ansible_host: 10.20.0.15
+raspberry_pi:
+  hosts:
+    small-slice-01:
+      ansible_host: 10.20.0.11
+    small-slice-02:
+      ansible_host: 10.20.0.12
+    small-slice-03:
+      ansible_host: 10.20.0.13
+    small-slice-04:
+      ansible_host: 10.20.0.14
+docker_hosts:
   children:
     nuc:
-      hosts:
-        big-slice:
-          ansible_host: 10.20.0.15
-          ansible_user: lbp
     raspberry_pi:
-      hosts:
-        small-slice-01:
-          ansible_host: 10.20.0.11
-          ansible_user: lbp
-        small-slice-02:
-          ansible_host: 10.20.0.12
-          ansible_user: lbp
-        small-slice-03:
-          ansible_host: 10.20.0.13
-          ansible_user: lbp
-        small-slice-04:
-          ansible_host: 10.20.0.14
-          ansible_user: lbp
-    docker_hosts:
-      children:
-        nuc:
-        raspberry_pi:
