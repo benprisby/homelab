@@ -3,6 +3,7 @@
 [![Ansible](https://img.shields.io/badge/Ansible-1A1918?logo=ansible&logoColor=white)](https://www.ansible.com/)
 [![Docker](https://img.shields.io/badge/Docker-0db7ed?logo=docker&logoColor=white)](https://www.docker.com/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Ansible playbooks for deploying and managing Docker services across my home server infrastructure.
 
@@ -151,3 +152,7 @@ ansible-inventory --list --ask-vault-pass
 # Debug specific host variables
 ansible big-slice -m debug -a "var=docker_services" --ask-vault-pass
 ```
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
