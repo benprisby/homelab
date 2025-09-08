@@ -11,6 +11,16 @@
         upgrade: full
         autoremove: true
 
+    - name: Upgrade chezmoi
+      ansible.builtin.command: chezmoi upgrade
+      changed_when: false
+
+    - name: Update and apply chezmoi dotfiles
+      ansible.builtin.command: chezmoi update
+      become: true
+      become_user: "{{ ansible_user }}"
+      changed_when: false
+
     - name: Pull latest Docker images for services
       community.docker.docker_compose_v2:
         project_src: "{{ docker_projects_path }}/{{ item }}"
