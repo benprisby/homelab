@@ -18,6 +18,9 @@ common_packages:
   - unattended-upgrades
   - vim
 
+# chezmoi configuration
+chezmoi_repo: https://github.com/benprisby/dotfiles
+
 # Docker configuration
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:
