@@ -103,9 +103,29 @@ services:
     networks:
       - monitoring
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - uptime_kuma_data:/app/data
+    ports:
+      - "3001:3001"
+    environment:
+      - UPTIME_KUMA_CLOUDFLARED_TOKEN=${UPTIME_KUMA_CLOUDFLARED_TOKEN}
+    networks:
+      - monitoring
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+
 networks:
   monitoring:
 
 volumes:
   prometheus_data:
   grafana_data:
+  uptime_kuma_data:

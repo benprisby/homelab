@@ -48,3 +48,11 @@ scrape_configs:
     scrape_interval: 30s
     static_configs:
       - targets: ["unpoller:9130"]
+
+  - job_name: uptime
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["uptime-kuma:3001"]
+    basic_auth:
+      username: "{{ vault_uptime_kuma_username }}"
+      password: "{{ vault_uptime_kuma_password }}"
