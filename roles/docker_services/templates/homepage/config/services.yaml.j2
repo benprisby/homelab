@@ -104,6 +104,15 @@
         username: {{ vault_nas_monitoring_username }}
         password: {{ vault_nas_monitoring_password }}
 
+  - Plex:
+      icon: plex
+      href: https://plex.home.benprisby.com
+      description: Home media server
+      widget:
+        type: plex
+        url: https://plex.home.benprisby.com
+        key: {{ vault_plex_server_token }}
+
   - Nginx Proxy Manager:
       icon: nginx-proxy-manager
       href: https://nginx.home.benprisby.com
