@@ -26,12 +26,12 @@
       container: graylog
       showStats: true
 
-  - Portainer:
-      icon: portainer
-      href: https://portainer.home.benprisby.com
-      description: Docker container management
+  - Uptime Kuma:
+      icon: uptime-kuma
+      href: https://uptime.home.benprisby.com
+      description: System and service uptime tracker
       server: big-slice
-      container: portainer
+      container: uptime-kuma
       showStats: true
 
 - Network:
@@ -112,6 +112,18 @@
         type: plex
         url: https://plex.home.benprisby.com
         key: {{ vault_plex_server_token }}
+
+  - Portainer:
+      icon: portainer
+      href: https://portainer.home.benprisby.com
+      description: Docker container management
+      server: big-slice
+      container: portainer
+      widget:
+        type: portainer
+        url: https://portainer.home.benprisby.com
+        env: 7  # Big Slice
+        key: {{ vault_portainer_access_token }}
 
   - Nginx Proxy Manager:
       icon: nginx-proxy-manager
