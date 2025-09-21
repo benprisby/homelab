@@ -56,3 +56,7 @@ scrape_configs:
     basic_auth:
       username: "{{ vault_uptime_kuma_username }}"
       password: "{{ vault_uptime_kuma_password }}"
+
+  - job_name: jellyfin
+    static_configs:
+      - targets: ["big-slice.home:8096"]
