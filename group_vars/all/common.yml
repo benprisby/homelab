@@ -8,6 +8,7 @@ common_packages:
   - avahi-daemon
   - build-essential
   - ca-certificates
+  - cifs-utils
   - curl
   - dnsutils
   - git

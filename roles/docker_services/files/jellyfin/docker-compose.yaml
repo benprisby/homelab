@@ -1,0 +1,33 @@
+---
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+      - nas_media:/media:ro
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - TZ=America/New_York
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.home.benprisby.com
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 1G
+
+volumes:
+  jellyfin_config:
+  jellyfin_cache:
+
+  nas_media:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "${NAS_MEDIA_SHARE}"
+      o: "username=${NAS_MEDIA_USERNAME},password=${NAS_MEDIA_PASSWORD},vers=3.0"

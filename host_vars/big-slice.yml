@@ -8,6 +8,7 @@ docker_services:
   - graylog
   - homebridge
   - homepage
+  - jellyfin
   - monitoring
   - nginx-proxy-manager
   - portainer

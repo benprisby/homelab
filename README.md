@@ -34,6 +34,7 @@ which services are deployed on each server.
 - **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
 - **Nginx Proxy Manager**: Reverse proxy and SSL management
 - **Portainer + Agents**: Docker container management for each server
+- **Jellyfin**: Home media server
 - **Homebridge**: HomeKit integration for non-native smart home devices
 - **Docker Proxy**: Secure Docker API access
 - **Homepage**: Service dashboard serving as a landing page
