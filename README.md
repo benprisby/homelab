@@ -30,16 +30,19 @@ cluster runs distributed services. The `docker_services` variable for each host 
 which services are deployed on each server.
 
 - **AdGuard Home**: Network-wide DNS filtering on main and IoT VLANs
-- **Graylog**: Centralized logging with MongoDB and OpenSearch
-- **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
-- **Nginx Proxy Manager**: Reverse proxy and SSL management
-- **Portainer + Agents**: Docker container management for each server
-- **Jellyfin**: Home media server
-- **Homebridge**: HomeKit integration for non-native smart home devices
 - **Docker Proxy**: Secure Docker API access
+- **Graylog**: Centralized logging with MongoDB and OpenSearch
+- **Homebridge**: HomeKit integration for non-native smart home devices
 - **Homepage**: Service dashboard serving as a landing page
+- **Jellyfin**: Home media server
+- **Nginx Proxy Manager**: Reverse proxy and SSL management
+- **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
+- **Portainer + Agents**: Docker container management for each server
+- **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
 
-The `docker_services` role deploys each of these Compose stacks onto one or more servers.
+The `docker_services` role deploys each of these Compose stacks onto one or more servers. UPS monitoring uses a hybrid
+approach: the NUT server runs in Docker on the main server, while NUT clients run natively on all hosts for reliable
+shutdown capabilities.
 
 ## 🚀 Getting Started
 

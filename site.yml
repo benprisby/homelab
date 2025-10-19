@@ -17,6 +17,12 @@
   roles:
     - docker_services
 
+- name: Configure NUT clients on all hosts
+  hosts: all
+  become: true
+  roles:
+    - geerlingguy.nut_client
+
 - name: Deployment summary
   hosts: all
   become: false
