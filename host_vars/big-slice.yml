@@ -11,7 +11,11 @@ docker_services:
   - jellyfin
   - monitoring
   - nginx-proxy-manager
+  - nut-server
   - portainer
+
+# NUT configuration override for local server
+nut_client_server: 127.0.0.1
 
 # Docker configuration override for local syslog server
 docker_daemon_options:

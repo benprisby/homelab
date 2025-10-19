@@ -122,6 +122,17 @@ services:
       start_period: 10s
       timeout: 5s
 
+  nut-exporter:
+    image: druggeri/nut_exporter:latest
+    container_name: nut-exporter
+    restart: unless-stopped
+    environment:
+      - "NUT_EXPORTER_SERVER=${NUT_SERVER_ADDRESS}"
+      - "NUT_EXPORTER_USERNAME=${NUT_MONITOR_USERNAME}"
+      - "NUT_EXPORTER_PASSWORD=${NUT_MONITOR_PASSWORD}"
+    networks:
+      - monitoring
+
 networks:
   monitoring:
 

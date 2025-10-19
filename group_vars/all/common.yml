@@ -22,6 +22,12 @@ common_packages:
 # chezmoi configuration
 chezmoi_repo: https://github.com/benprisby/dotfiles
 
+# NUT configuration
+nut_client_ups: ups
+nut_client_server: "{{ hostvars['big-slice']['ansible_host'] }}"
+nut_client_username: "{{ vault_nut_monitor_username }}"
+nut_client_password: "{{ vault_nut_monitor_password }}"
+
 # Docker configuration
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:

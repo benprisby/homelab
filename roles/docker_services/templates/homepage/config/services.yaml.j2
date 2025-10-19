@@ -170,6 +170,17 @@
         url: https://octoprint.home.benprisby.com
         key: {{ vault_octoprint_api_key }}
 
+  - UPS:
+      icon: nut
+      href: https://peanut.home.benprisby.com/device/ups
+      description: Homelab UPS monitoring
+      widget:
+        type: peanut
+        url: https://peanut.home.benprisby.com
+        key: ups
+        username: {{ vault_nut_monitor_username }}
+        password: {{ vault_nut_monitor_password }}
+
   - Laser Printer:
       icon: brother
       href: https://laserprinter.home.benprisby.com

@@ -1,0 +1,34 @@
+---
+services:
+  nut-server:
+    image: instantlinux/nut-upsd:latest
+    container_name: nut-server
+    restart: unless-stopped
+    devices:
+      - /dev/bus/usb:/dev/bus/usb:rwm
+    ports:
+      - "3493:3493"
+    environment:
+      - API_USER=${NUT_MONITOR_USERNAME}
+      - API_PASSWORD=${NUT_MONITOR_PASSWORD}
+    networks:
+      - nut
+
+  peanut:
+    image: brandawg93/peanut:latest
+    container_name: peanut
+    restart: unless-stopped
+    volumes:
+      - ./peanut.yaml:/config/settings.yml:ro
+    ports:
+      - 3494:8080
+    environment:
+      - DISABLE_CONFIG_FILE=true  # No saving
+    networks:
+      - nut
+
+networks:
+  nut:
+
+volumes:
+  peanut_data:
