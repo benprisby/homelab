@@ -18,11 +18,4 @@ docker_services:
 nut_client_server: 127.0.0.1
 
 # Docker configuration override for local syslog server
-docker_daemon_options:
-  log-driver: syslog
-  log-opts:
-    syslog-address: "udp://127.0.0.1:5140"
-    syslog-facility: daemon
-    syslog-format: rfc5424micro
-    tag: "{{ '{{.DaemonName}}/{{.Name}}/{{.ID}}' | string }}"
-  metrics-addr: "0.0.0.0:9323"
+docker_daemon_syslog_address: 127.0.0.1
