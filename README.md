@@ -74,7 +74,7 @@ while not overcomplicating things today.
 
 ### Inventory
 
-- `production`: Host group definitions and connection information
+- `hosts.yml`: Host group definitions and connection information
 - `group_vars/all/common.yml`: Global variables common for all servers
 - `group_vars/all/vault.yml`: Encrypted secrets (Ansible Vault)
 - `host_vars/*.yml`: Host-specific service assignments
