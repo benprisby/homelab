@@ -32,10 +32,11 @@ nut_client_password: "{{ vault_nut_monitor_password }}"
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:
   - "{{ ansible_user }}"
+docker_daemon_syslog_address: "{{ hostvars['big-slice']['ansible_host'] }}"
 docker_daemon_options:
   log-driver: syslog
   log-opts:
-    syslog-address: "udp://{{ hostvars['big-slice']['ansible_host'] }}:5140"
+    syslog-address: "udp://{{ docker_daemon_syslog_address }}:5140"
     syslog-facility: daemon
     syslog-format: rfc5424micro
     tag: "{{ '{{.DaemonName}}/{{.Name}}/{{.ID}}' | string }}"
