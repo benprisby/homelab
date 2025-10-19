@@ -50,7 +50,7 @@ The `docker_services` role deploys each of these Compose stacks onto one or more
 
 2. Configure secrets (if needed):
    ```shell
-   ansible-vault edit group_vars/vault.yml
+   ansible-vault edit group_vars/all/vault.yml
    ```
 
 3. Run the desired playbook:
