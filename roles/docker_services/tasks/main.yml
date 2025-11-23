@@ -16,6 +16,7 @@
     group: "{{ ansible_user }}"
     mode: preserve
   loop: "{{ docker_services }}"
+  register: docker_services_copy_result
   notify: Restart Docker services
 
 - name: Create template subdirectories
@@ -41,6 +42,7 @@
   when:
     - item.state == "file"
     - item.path.split("/")[0] in docker_services
+  register: docker_services_template_result
   notify: Restart Docker services
 
 - name: Start Docker services

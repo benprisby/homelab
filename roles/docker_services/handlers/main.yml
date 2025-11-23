@@ -1,8 +1,26 @@
 ---
 - name: Restart Docker services
   community.docker.docker_compose_v2:
-    project_src: "{{ docker_projects_path }}/{{ item }}"
+    project_src: "{{ docker_projects_path }}/{{ service_name }}"
     state: restarted
-  loop: "{{ docker_services }}"
+  loop: >-
+    {{
+      (
+        docker_services_copy_result.results | default([])
+        | selectattr('changed')
+        | map(attribute='item')
+        | list
+        +
+        docker_services_template_result.results | default([])
+        | selectattr('changed')
+        | map(attribute='item.path')
+        | map('split', '/')
+        | map('first')
+        | list
+      )
+      | unique
+    }}
+  loop_control:
+    loop_var: service_name
   become: true
   become_user: "{{ ansible_user }}"
