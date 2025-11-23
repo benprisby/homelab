@@ -1,7 +1,7 @@
 ---
 services:
   adguard-home:
-    image: adguard/adguardhome
+    image: adguard/adguardhome:v0.107.69
     container_name: adguard-home
     restart: unless-stopped
     network_mode: host

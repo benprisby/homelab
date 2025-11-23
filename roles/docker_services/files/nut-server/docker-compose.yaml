@@ -1,7 +1,7 @@
 ---
 services:
   nut-server:
-    image: instantlinux/nut-upsd:latest
+    image: instantlinux/nut-upsd:2.8.3-r2
     container_name: nut-server
     restart: unless-stopped
     devices:
@@ -15,7 +15,7 @@ services:
       - nut
 
   peanut:
-    image: brandawg93/peanut:latest
+    image: brandawg93/peanut:5.17.0
     container_name: peanut
     restart: unless-stopped
     volumes:

@@ -1,7 +1,7 @@
 ---
 services:
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.7.3
     container_name: prometheus
     restart: unless-stopped
     volumes:
@@ -21,7 +21,7 @@ services:
       - "--web.enable-lifecycle"
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:12.3.0
     container_name: grafana
     restart: unless-stopped
     volumes:
@@ -35,7 +35,7 @@ services:
       - monitoring
 
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.10.2
     container_name: node-exporter
     network_mode: host
     pid: host
@@ -49,7 +49,7 @@ services:
       - "--collector.systemd"
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor
     restart: unless-stopped
     privileged: true

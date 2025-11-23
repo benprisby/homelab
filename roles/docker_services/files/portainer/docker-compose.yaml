@@ -1,7 +1,7 @@
 ---
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.33.4
     container_name: portainer
     restart: unless-stopped
     volumes:

@@ -1,7 +1,7 @@
 ---
 services:
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.10.2
     container_name: node-exporter
     network_mode: host
     pid: host
@@ -15,7 +15,7 @@ services:
       - "--collector.systemd"
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.49.2
+    image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor
     restart: unless-stopped
     privileged: true
