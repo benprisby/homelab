@@ -1,0 +1,9 @@
+---
+version: 2
+updates:
+  - package-ecosystem: docker-compose
+    directories:
+      - roles/docker_services/files/*
+    schedule:
+      interval: weekly
+      day: sunday
