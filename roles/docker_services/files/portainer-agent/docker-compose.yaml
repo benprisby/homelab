@@ -1,7 +1,7 @@
 ---
 services:
   portainer-agent:
-    image: portainer/agent:2.33.4
+    image: portainer/agent:2.35.0
     container_name: portainer-agent
     restart: unless-stopped
     volumes:
