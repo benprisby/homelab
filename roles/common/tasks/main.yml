@@ -72,7 +72,7 @@
   when: common_chezmoi_installed.rc != 0
   vars:
     chezmoi_version: "{{ common_chezmoi_release.json.tag_name[1:] }}"
-    chezmoi_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' if ansible_architecture == 'aarch64' else ansible_architecture }}"
+    chezmoi_arch: "{{ 'amd64' if ansible_facts['architecture'] == 'x86_64' else 'arm64' }}"
     chezmoi_filename: "chezmoi_{{ chezmoi_version }}_linux_{{ chezmoi_arch }}.deb"
 
 - name: Install chezmoi package
