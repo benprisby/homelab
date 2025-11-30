@@ -1,7 +1,7 @@
 ---
 services:
   mongodb:
-    image: mongo:6.0.26
+    image: mongo:8.2.2
     container_name: graylog-mongodb
     restart: unless-stopped
     volumes:
