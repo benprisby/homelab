@@ -154,16 +154,22 @@ filtering:
   rewrites:
     - domain: unifi
       answer: {{ vault_unifi_address }}
+      enabled: true
     - domain: big-slice.home
       answer: {{ hostvars['big-slice']['ansible_host'] }}
+      enabled: true
     - domain: small-slice-01.home
       answer: {{ hostvars['small-slice-01']['ansible_host'] }}
+      enabled: true
     - domain: small-slice-02.home
       answer: {{ hostvars['small-slice-02']['ansible_host'] }}
+      enabled: true
     - domain: small-slice-03.home
       answer: {{ hostvars['small-slice-03']['ansible_host'] }}
+      enabled: true
     - domain: small-slice-04.home
       answer: {{ hostvars['small-slice-04']['ansible_host'] }}
+      enabled: true
   safe_fs_patterns:
     - /opt/adguardhome/work/data/userfilters/*
   safebrowsing_cache_size: 1048576
@@ -173,6 +179,7 @@ filtering:
   filters_update_interval: 24
   blocked_response_ttl: 10
   filtering_enabled: true
+  rewrites_enabled: true
   parental_enabled: false
   safebrowsing_enabled: false
   protection_enabled: true
@@ -197,4 +204,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 30
+schema_version: 31
