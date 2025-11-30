@@ -10,7 +10,7 @@ services:
       - graylog
 
   opensearch:
-    image: opensearchproject/opensearch:2.15.0
+    image: opensearchproject/opensearch:2.19.4
     container_name: graylog-opensearch
     restart: unless-stopped
     volumes:
