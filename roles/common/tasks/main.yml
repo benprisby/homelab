@@ -15,11 +15,12 @@
   become: true
   become_user: "{{ ansible_user }}"
 
-- name: Add SSH public key to authorized_keys
+- name: Add SSH public keys to authorized_keys
   ansible.posix.authorized_key:
     user: "{{ ansible_user }}"
-    key: "{{ ssh_public_key }}"
+    key: "{{ item }}"
     state: present
+  loop: "{{ ssh_public_keys }}"
 
 - name: Set timezone
   community.general.timezone:

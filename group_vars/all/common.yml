@@ -3,7 +3,9 @@
 ansible_python_interpreter: /usr/bin/python3
 ansible_user: lbp
 timezone: America/New_York
-ssh_public_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqPuTyh0IOltid4FiEH76niboJvZ0iIGp2C/H1jtXwy ben@prisby.com"
+ssh_public_keys:
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqPuTyh0IOltid4FiEH76niboJvZ0iIGp2C/H1jtXwy ben@prisby.com"
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDX57C69Y6zE2qto7k5YUi5Y1o4ciLZrboi9Na/Apl3 homelab"
 common_packages:
   - avahi-daemon
   - build-essential

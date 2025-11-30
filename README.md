@@ -2,6 +2,7 @@
 
 [![Ansible](https://img.shields.io/badge/Ansible-1A1918?logo=ansible&logoColor=white)](https://www.ansible.com/)
 [![Docker](https://img.shields.io/badge/Docker-0db7ed?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Deploy](https://github.com/benprisby/homelab/actions/workflows/deploy.yaml/badge.svg)](https://github.com/benprisby/homelab/actions/workflows/deploy.yaml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -95,6 +96,26 @@ docker_services:
 
 Each Compose stack resides under `roles/docker_services/files/<service>`, with any templates under
 `roles/docker_services/templates/<service>`. Any files and subdirectories in these locations are merged on the target.
+
+## 🤖 GitOps Automation
+
+This repository uses GitHub Actions for automated deployments upon push events to `main`. The infrastructure is
+automatically deployed after safety checks pass:
+
+- Syntax validation
+- Ansible-lint checks
+- Dry run with `--check --diff` to preview changes
+
+### Manual Deployments
+
+With permission, deployments can be triggered manually from the Actions tab with options:
+
+```
+Actions > Deploy Infrastructure > Run workflow
+```
+
+- **limit**: Deploy to specific hosts only (e.g., `big-slice,small-slice-01`)
+- **skip_check**: Skip dry run and deploy immediately (use with caution)
 
 ## 🔧 Development
 

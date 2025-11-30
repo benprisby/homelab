@@ -1,0 +1,59 @@
+---
+name: Deploy Infrastructure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Limit deployment to specific hosts (e.g., big-slice,small-slice-01)
+        required: false
+        type: string
+      skip_check:
+        description: Skip the check run and deploy directly
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  validate:
+    name: Pre-commit Checks
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure --color=always
+
+  deploy:
+    name: Deploy Infrastructure
+    needs: validate
+    runs-on: self-hosted
+    concurrency: production
+    environment:
+      name: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Dry run deployment
+        if: ${{ !inputs.skip_check }}
+        uses: dawidd6/action-ansible-playbook@v5
+        with:
+          playbook: site.yml
+          requirements: requirements.yml
+          vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+          key: ${{ secrets.HOMELAB_SSH_KEY }}
+          options: --check --diff ${{ inputs.limit && format('--limit {0}', inputs.limit) || '' }}
+
+      - name: Deploy infrastructure
+        uses: dawidd6/action-ansible-playbook@v5
+        with:
+          playbook: site.yml
+          requirements: requirements.yml
+          vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+          key: ${{ secrets.HOMELAB_SSH_KEY }}
+          options: ${{ inputs.limit && format('--limit {0}', inputs.limit) || '' }}
