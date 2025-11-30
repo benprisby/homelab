@@ -34,7 +34,7 @@ services:
       - graylog
 
   graylog:
-    image: graylog/graylog:6.3.6
+    image: graylog/graylog:7.0.1
     container_name: graylog
     restart: unless-stopped
     depends_on:
