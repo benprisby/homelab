@@ -11,6 +11,13 @@
         upgrade: full
         autoremove: true
 
+    - name: Upgrade pipx packages
+      community.general.pipx:
+        name: "{{ item }}"
+        state: latest
+        include_injected: true
+      with_items: "{{ pipx_packages }}"
+
     - name: Upgrade chezmoi
       ansible.builtin.command: chezmoi upgrade
       changed_when: false

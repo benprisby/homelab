@@ -6,6 +6,15 @@
     name: "{{ common_packages }}"
     state: present
 
+- name: Install pipx packages
+  community.general.pipx:
+    name: "{{ item }}"
+    state: present
+    install_deps: true
+  with_items: "{{ pipx_packages }}"
+  become: true
+  become_user: "{{ ansible_user }}"
+
 - name: Add SSH public key to authorized_keys
   ansible.posix.authorized_key:
     user: "{{ ansible_user }}"
