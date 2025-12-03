@@ -9,6 +9,6 @@ collections:
 
 roles:
   - name: geerlingguy.docker
-    version: "7.8.0"
+    version: "7.9.0"
   - name: geerlingguy.nut_client
     version: "2.0.0"
