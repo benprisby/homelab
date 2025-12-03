@@ -1,4 +1,8 @@
 ---
+ci:
+  skip:
+    - ansible-lint
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -14,8 +18,6 @@ repos:
     rev: v25.11.0
     hooks:
       - id: ansible-lint
-        additional_dependencies:
-          - ansible
 
   - repo: meta
     hooks:

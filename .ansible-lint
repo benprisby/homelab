@@ -1,9 +1,0 @@
----
-offline: true
-mock_roles:
-  - geerlingguy.docker
-  - geerlingguy.nut_client
-
-exclude_paths:
-  - .ansible/
-  - .github/
