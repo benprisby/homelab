@@ -22,19 +22,8 @@ on:
         default: false
 
 jobs:
-  validate:
-    name: Pre-commit Checks
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Run pre-commit
-        run: pre-commit run --all-files --show-diff-on-failure --color=always
-
   deploy:
-    name: Deploy Infrastructure
-    needs: validate
+    name: Ansible Deployment
     runs-on: self-hosted
     concurrency: production
     environment:
@@ -42,6 +31,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure --color=always
 
       - name: Dry run deployment
         if: ${{ !inputs.skip_check }}
