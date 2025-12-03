@@ -1,4 +1,5 @@
 ---
+offline: true
 mock_roles:
   - geerlingguy.docker
   - geerlingguy.nut_client
