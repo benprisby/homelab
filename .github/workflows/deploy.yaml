@@ -23,6 +23,9 @@ jobs:
     concurrency: production
     environment:
       name: production
+    env:
+      ANSIBLE_COLLECTIONS_PATH: ${{ github.workspace }}/.ansible/collections
+      ANSIBLE_ROLES_PATH: ${{ github.workspace }}/.ansible/roles
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
