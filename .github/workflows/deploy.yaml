@@ -30,7 +30,7 @@ jobs:
       - name: Run pre-commit
         run: pre-commit run --all-files --show-diff-on-failure --color=always
 
-      - name: Dry run deployment
+      - name: Dry run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v5
         with:
           playbook: site.yml
@@ -39,7 +39,7 @@ jobs:
           key: ${{ secrets.HOMELAB_SSH_KEY }}
           options: --check --diff ${{ inputs.limit && format('--limit {0}', inputs.limit) || '' }}
 
-      - name: Deploy infrastructure
+      - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v5
         with:
           playbook: site.yml
