@@ -80,7 +80,7 @@ services:
       timeout: 10s
 
   unpoller:
-    image: ghcr.io/unpoller/unpoller:v2.19.0
+    image: ghcr.io/unpoller/unpoller:v2.21.0
     container_name: unpoller
     restart: unless-stopped
     ports:
