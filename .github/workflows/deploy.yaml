@@ -34,7 +34,7 @@ jobs:
         run: pre-commit run --all-files --show-diff-on-failure --color=always
 
       - name: Dry run Ansible playbook
-        uses: dawidd6/action-ansible-playbook@v5
+        uses: dawidd6/action-ansible-playbook@v6
         with:
           playbook: site.yml
           requirements: requirements.yml
@@ -43,7 +43,7 @@ jobs:
           options: --check --diff ${{ inputs.limit && format('--limit {0}', inputs.limit) || '' }}
 
       - name: Run Ansible playbook
-        uses: dawidd6/action-ansible-playbook@v5
+        uses: dawidd6/action-ansible-playbook@v6
         with:
           playbook: site.yml
           requirements: requirements.yml
