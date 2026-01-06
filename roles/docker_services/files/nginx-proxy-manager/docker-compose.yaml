@@ -8,6 +8,9 @@ services:
       - "80:80"
       - "81:81"
       - "443:443"
+    networks:
+      proxy:
+        ipv4_address: 172.21.0.10
     volumes:
       - nginx_data:/data
       - letsencrypt_data:/etc/letsencrypt
@@ -15,6 +18,14 @@ services:
       test: ["CMD", "/usr/bin/check-health"]
       interval: 10s
       timeout: 3s
+
+networks:
+  proxy:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
 
 volumes:
   nginx_data:
