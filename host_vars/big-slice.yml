@@ -6,7 +6,7 @@ hardware:
 
 docker_services:
   - graylog
-  - homebridge
+  - home-assistant
   - homepage
   - jellyfin
   - monitoring

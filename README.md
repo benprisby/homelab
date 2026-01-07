@@ -33,7 +33,7 @@ which services are deployed on each server.
 - **AdGuard Home**: Network-wide DNS filtering on main and IoT VLANs
 - **Docker Proxy**: Secure Docker API access
 - **Graylog**: Centralized logging with MongoDB and OpenSearch
-- **Homebridge**: HomeKit integration for non-native smart home devices
+- **Home Assistant**: Smart home hub and automation platform
 - **Homepage**: Service dashboard serving as a landing page
 - **Jellyfin**: Home media server
 - **Nginx Proxy Manager**: Reverse proxy and SSL management
