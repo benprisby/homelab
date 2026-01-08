@@ -19,7 +19,7 @@ services:
     container_name: peanut
     restart: unless-stopped
     volumes:
-      - ./peanut.yaml:/config/settings.yml:ro
+      - ./peanut.yaml:/app/config/settings.yml:ro  # See: https://github.com/Brandawg93/PeaNUT/issues/364
     ports:
       - 3494:8080
     environment:
