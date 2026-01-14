@@ -14,7 +14,7 @@
     - name: Upgrade pipx packages
       community.general.pipx:
         name: "{{ item }}"
-        state: latest
+        state: upgrade
         include_injected: true
       with_items: "{{ pipx_packages }}"
 
