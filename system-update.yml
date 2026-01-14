@@ -33,6 +33,7 @@
         project_src: "{{ docker_projects_path }}/{{ item }}"
         state: present
         pull: always
+        build: never
       loop: "{{ docker_services }}"
       when: docker_services is defined
       become: true
