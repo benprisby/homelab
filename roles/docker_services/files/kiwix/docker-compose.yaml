@@ -1,0 +1,19 @@
+---
+services:
+  kiwix-serve:
+    image: ghcr.io/kiwix/kiwix-serve:3.8.2
+    container_name: kiwix-serve
+    restart: unless-stopped
+    volumes:
+      - nas_wikipedia:/data:ro
+    ports:
+      - "8081:8080"
+    command: "*.zim"
+
+volumes:
+  nas_wikipedia:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "${NAS_WIKIPEDIA_SHARE}"
+      o: "username=${NAS_WIKIPEDIA_USERNAME},password=${NAS_WIKIPEDIA_PASSWORD},file_mode=0777,dir_mode=0777,vers=3.0"

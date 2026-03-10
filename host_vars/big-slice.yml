@@ -9,6 +9,7 @@ docker_services:
   - home-assistant
   - homepage
   - jellyfin
+  - kiwix
   - monitoring
   - nginx-proxy-manager
   - nut-server

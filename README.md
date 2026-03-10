@@ -13,14 +13,14 @@ Ansible playbooks for deploying and managing Docker services across my home serv
 My homelab is a self-hosted infrastructure playground for running various services both critical and experimental. It
 consists of the following servers:
 
-| Name             | Platform        | Role |
-| ---------------- | --------------- | ---- |
-| `big-slice`      | Intel NUC       | Main infrastructure server running core services |
-| `small-slice-01` | Raspberry Pi 4  | Pi cluster node 1 running DNS and monitoring services |
-| `small-slice-02` | Raspberry Pi 4  | Pi cluster node 2 running DNS and monitoring services |
-| `small-slice-03` | Raspberry Pi 4  | Pi cluster node 3 running DNS and monitoring services |
-| `small-slice-04` | Raspberry Pi 4  | Pi cluster node 4 running DNS and monitoring services |
-| `nas`            | Synology DS920+ | Network-attached storage for backups and larger files |
+| Name             | Platform          | Role |
+| ---------------- | ----------------- | ---- |
+| `big-slice`      | Intel NUC         | Main infrastructure server running core services |
+| `small-slice-01` | Raspberry Pi 4    | Pi cluster node 1 running DNS and monitoring services |
+| `small-slice-02` | Raspberry Pi 4    | Pi cluster node 2 running DNS and monitoring services |
+| `small-slice-03` | Raspberry Pi 4    | Pi cluster node 3 running DNS and monitoring services |
+| `small-slice-04` | Raspberry Pi 4    | Pi cluster node 4 running DNS and monitoring services |
+| `nas`            | Ubiquiti UNAS Pro | Network-attached storage for backups and larger files |
 
 The NAS is not managed by these playbooks currently.
 

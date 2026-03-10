@@ -92,16 +92,6 @@
         password: {{ vault_adguard_password }}
 
 - Servers:
-  - NAS:
-      icon: synology
-      href: https://nas.home.benprisby.com
-      description: Synology web interface
-      widget:
-        type: diskstation
-        url: https://nas.home.benprisby.com
-        username: {{ vault_nas_monitoring_username }}
-        password: {{ vault_nas_monitoring_password }}
-
   - Jellyfin:
       icon: jellyfin
       href: https://jellyfin.home.benprisby.com
@@ -143,7 +133,7 @@
       icon: kiwix
       href: https://kiwix.home.benprisby.com
       description: Wikipedia archive
-      server: nas
+      server: big-slice
       container: kiwix-serve
 
 - Smart Home:
