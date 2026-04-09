@@ -6,7 +6,6 @@ hardware:
 
 docker_services:
   - graylog
-  - home-assistant
   - homepage
   - jellyfin
   - kiwix
