@@ -25,6 +25,7 @@ services:
       - 3494:8080
     environment:
       - DISABLE_CONFIG_FILE=true  # No saving
+      - AUTH_DISABLED=true
     networks:
       - nut
 
