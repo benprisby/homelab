@@ -28,7 +28,7 @@ jobs:
       ANSIBLE_ROLES_PATH: ${{ github.workspace }}/.ansible/roles
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Run pre-commit
         run: pre-commit run --all-files --show-diff-on-failure --color=always
