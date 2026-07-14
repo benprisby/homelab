@@ -1,7 +1,7 @@
 ---
 services:
   node-exporter:
-    image: prom/node-exporter:v1.11.1
+    image: prom/node-exporter:v1.12.1
     container_name: node-exporter
     network_mode: host
     pid: host
