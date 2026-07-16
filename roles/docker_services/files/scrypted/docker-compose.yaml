@@ -1,6 +1,6 @@
 services:
   scrypted:
-    image: ghcr.io/koush/scrypted:v0.143.0-noble-full
+    image: ghcr.io/koush/scrypted:v0.144.1-noble-full
     container_name: scrypted
     restart: unless-stopped
     network_mode: host
