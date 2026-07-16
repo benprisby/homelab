@@ -1,0 +1,18 @@
+services:
+  scrypted:
+    image: ghcr.io/koush/scrypted:v0.143.0-noble-full
+    container_name: scrypted
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /etc/avahi/services:/etc/avahi/services:ro
+      - scrypted-data:/server/volume
+    devices:
+      - "/dev/dri:/dev/dri"
+    environment:
+      - SCRYPTED_DOCKER_AVAHI=true
+    logging:
+      driver: "none"
+
+volumes:
+  scrypted-data:
