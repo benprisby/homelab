@@ -39,10 +39,15 @@ which services are deployed on each server.
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
 - **Portainer + Agents**: Docker container management for each server
 - **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
+- **Scrypted**: NVR platform for camera management and HomeKit integration
 
-The `docker_services` role deploys each of these Compose stacks onto one or more servers. UPS monitoring uses a hybrid
-approach: the NUT server runs in Docker on the main server, while NUT clients run natively on all hosts for reliable
-shutdown capabilities.
+The `docker_services` role deploys each of these Compose stacks onto one or more servers.
+
+UPS monitoring uses a hybrid approach: the NUT server runs in Docker on the main server, while NUT clients run natively
+on all hosts for reliable shutdown capabilities.
+
+Scrypted runs in host network mode with its own built-in Avahi daemon for HomeKit discovery, so the `docker_services`
+role stops and disables the host's Avahi daemon on nodes running it to avoid conflicts.
 
 ## 🚀 Getting Started
 

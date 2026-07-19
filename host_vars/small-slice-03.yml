@@ -8,3 +8,4 @@ docker_services:
   - dockerproxy
   - monitoring-agent
   - portainer-agent
+  - scrypted

@@ -45,6 +45,16 @@
   register: docker_services_template_result
   notify: Restart Docker services
 
+- name: Manage host Avahi daemon based on Scrypted presence
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: "{{ 'stopped' if 'scrypted' in docker_services else 'started' }}"
+    enabled: "{{ 'scrypted' not in docker_services }}"
+  loop:
+    - avahi-daemon.service
+    - avahi-daemon.socket
+  become: true
+
 - name: Start Docker services
   community.docker.docker_compose_v2:
     project_src: "{{ docker_projects_path }}/{{ item }}"
