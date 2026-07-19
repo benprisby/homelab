@@ -67,30 +67,6 @@
         username: {{ vault_adguard_username }}
         password: {{ vault_adguard_password }}
 
-  - External AdGuard Home (Primary):
-      icon: adguard-home
-      href: https://adguard3.home.benprisby.com
-      description: External VLANs primary DNS
-      server: small-slice-03
-      container: adguard-home
-      widget:
-        type: adguard
-        url: https://adguard3.home.benprisby.com
-        username: {{ vault_adguard_username }}
-        password: {{ vault_adguard_password }}
-
-  - External AdGuard Home (Secondary):
-      icon: adguard-home
-      href: https://adguard4.home.benprisby.com
-      description: External VLANs secondary DNS
-      server: small-slice-04
-      container: adguard-home
-      widget:
-        type: adguard
-        url: https://adguard4.home.benprisby.com
-        username: {{ vault_adguard_username }}
-        password: {{ vault_adguard_password }}
-
 - Servers:
   - Jellyfin:
       icon: jellyfin
@@ -146,10 +122,15 @@
         url: https://homeassistant.home.benprisby.com
         key: {{ vault_home_assistant_token }}
 
-  - Scrypted:
+  - Scrypted (Primary):
       icon: scrypted
       href: https://scrypted.home.benprisby.com
-      description: Camera integration platform
+      description: Home camera integration platform
+
+  - Scrypted (Common):
+      icon: scrypted
+      href: https://scrypted-common.home.benprisby.com
+      description: Building camera integration platform
 
   - 3D Printer:
       icon: octoprint
