@@ -5,7 +5,6 @@ hardware:
   type: raspberry_pi
 
 docker_services:
-  - adguard
   - dockerproxy
   - monitoring-agent
   - portainer-agent
