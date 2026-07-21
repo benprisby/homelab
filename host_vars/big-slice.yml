@@ -7,7 +7,6 @@ hardware:
 docker_services:
   - graylog
   - homepage
-  - jellyfin
   - kiwix
   - monitoring
   - nginx-proxy-manager
