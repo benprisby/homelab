@@ -1,4 +1,14 @@
 ---
+- name: Add Tailscale apt repository
+  ansible.builtin.deb822_repository:
+    name: tailscale
+    types: deb
+    uris: "https://pkgs.tailscale.com/stable/{{ ansible_facts['distribution'] | lower }}"
+    suites: "{{ ansible_facts['distribution_release'] }}"
+    components: main
+    signed_by: "https://pkgs.tailscale.com/stable/{{ ansible_facts['distribution'] | lower }}/{{ ansible_facts['distribution_release'] }}.noarmor.gpg"
+  register: common_tailscale_repo
+
 - name: Install common packages
   ansible.builtin.apt:
     update_cache: true
@@ -14,6 +24,12 @@
   with_items: "{{ pipx_packages }}"
   become: true
   become_user: "{{ ansible_user }}"
+
+- name: Enable and start tailscaled service
+  ansible.builtin.systemd_service:
+    name: tailscaled
+    enabled: true
+    state: started
 
 - name: Add SSH public keys to authorized_keys
   ansible.posix.authorized_key:
