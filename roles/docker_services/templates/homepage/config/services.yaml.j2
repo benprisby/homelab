@@ -2,33 +2,33 @@
 - Monitoring:
   - Grafana:
       icon: grafana
-      href: https://grafana.home.benprisby.com/dashboards
+      href: https://grafana.eastie.boston/dashboards
       description: Server dashboards
-      server: big-slice
+      server: big-slice-01
       container: grafana
       showStats: true
 
   - Prometheus:
       icon: prometheus
-      href: https://prometheus.home.benprisby.com
+      href: https://prometheus.eastie.boston
       description: Monitoring database
-      server: big-slice
+      server: big-slice-01
       container: prometheus
       showStats: true
 
   - Graylog:
       icon: graylog
-      href: https://graylog.home.benprisby.com
+      href: https://graylog.eastie.boston
       description: Centralized log server
-      server: big-slice
+      server: big-slice-01
       container: graylog
       showStats: true
 
   - Uptime Kuma:
       icon: uptime-kuma
-      href: https://uptime.home.benprisby.com
+      href: https://uptime.eastie.boston
       description: System and service uptime tracker
-      server: big-slice
+      server: big-slice-01
       container: uptime-kuma
       showStats: true
 
@@ -45,112 +45,112 @@
 
   - AdGuard Home (Primary):
       icon: adguard-home
-      href: https://adguard1.home.benprisby.com
+      href: https://adguard1.eastie.boston
       description: Main VLAN primary DNS
       server: small-slice-01
       container: adguard-home
       widget:
         type: adguard
-        url: https://adguard1.home.benprisby.com
+        url: https://adguard1.eastie.boston
         username: {{ vault_adguard_username }}
         password: {{ vault_adguard_password }}
 
   - AdGuard Home (Secondary):
       icon: adguard-home
-      href: https://adguard2.home.benprisby.com
+      href: https://adguard2.eastie.boston
       description: Main VLAN secondary DNS
       server: small-slice-02
       container: adguard-home
       widget:
         type: adguard
-        url: https://adguard2.home.benprisby.com
+        url: https://adguard2.eastie.boston
         username: {{ vault_adguard_username }}
         password: {{ vault_adguard_password }}
 
 - Servers:
   - Jellyfin:
       icon: jellyfin
-      href: https://jellyfin.home.benprisby.com
+      href: https://jellyfin.eastie.boston
       description: Home media server
       widget:
         type: jellyfin
-        url: https://jellyfin.home.benprisby.com
+        url: https://jellyfin.eastie.boston
         key: {{ vault_jellyfin_api_token }}
         enableBlocks: true
         enableMediaControl: false
 
   - Portainer:
       icon: portainer
-      href: https://portainer.home.benprisby.com
+      href: https://portainer.eastie.boston
       description: Docker container management
-      server: big-slice
+      server: big-slice-01
       container: portainer
       widget:
         type: portainer
-        url: https://portainer.home.benprisby.com
+        url: https://portainer.eastie.boston
         env: 7  # Big Slice
         key: {{ vault_portainer_access_token }}
 
   - Nginx Proxy Manager:
       icon: nginx-proxy-manager
-      href: https://nginx.home.benprisby.com
+      href: https://nginx.eastie.boston
       description: Reverse proxy for home services
-      server: big-slice
+      server: big-slice-01
       container: nginx-proxy-manager
       widget:
         type: npm
-        url: https://nginx.home.benprisby.com
+        url: https://nginx.eastie.boston
         username: {{ vault_nginx_username }}
         password: {{ vault_nginx_password }}
 
   - Kiwix:
       icon: kiwix
-      href: https://kiwix.home.benprisby.com
+      href: https://kiwix.eastie.boston
       description: Wikipedia archive
-      server: big-slice
+      server: big-slice-01
       container: kiwix-serve
 
 - Smart Home:
   - Home Assistant:
       icon: home-assistant
-      href: https://homeassistant.home.benprisby.com
+      href: https://homeassistant.eastie.boston
       description: Smart home hub
       widget:
         type: homeassistant
-        url: https://homeassistant.home.benprisby.com
+        url: https://homeassistant.eastie.boston
         key: {{ vault_home_assistant_token }}
 
   - Scrypted (Primary):
       icon: scrypted
-      href: https://scrypted.home.benprisby.com
+      href: https://scrypted.eastie.boston
       description: Home camera integration platform
 
   - Scrypted (Common):
       icon: scrypted
-      href: https://scrypted-common.home.benprisby.com
+      href: https://scrypted-common.eastie.boston
       description: Building camera integration platform
 
   - 3D Printer:
       icon: octoprint
-      href: https://octoprint.home.benprisby.com
+      href: https://octoprint.eastie.boston
       description: Prusa MK3S management
       widget:
         type: octoprint
-        url: https://octoprint.home.benprisby.com
+        url: https://octoprint.eastie.boston
         key: {{ vault_octoprint_api_key }}
 
   - UPS:
       icon: nut
-      href: https://peanut.home.benprisby.com/device/ups
+      href: https://peanut.eastie.boston/device/ups
       description: Homelab UPS monitoring
       widget:
         type: peanut
-        url: https://peanut.home.benprisby.com
+        url: https://peanut.eastie.boston
         key: ups
         username: {{ vault_nut_monitor_username }}
         password: {{ vault_nut_monitor_password }}
 
   - Laser Printer:
       icon: brother
-      href: https://laserprinter.home.benprisby.com
+      href: https://laserprinter.eastie.boston
       description: Brother HL-L3280CDW web interface

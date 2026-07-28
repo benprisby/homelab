@@ -13,14 +13,14 @@ Ansible playbooks for deploying and managing Docker services across my home serv
 My homelab is a self-hosted infrastructure playground for running various services both critical and experimental. It
 consists of the following servers:
 
-| Name             | Platform          | Role |
-| ---------------- | ----------------- | ---- |
-| `big-slice`      | Intel NUC         | Main infrastructure server running core services |
-| `small-slice-01` | Raspberry Pi 4    | Pi cluster node 1 running DNS and monitoring services |
-| `small-slice-02` | Raspberry Pi 4    | Pi cluster node 2 running DNS and monitoring services |
-| `small-slice-03` | Raspberry Pi 4    | Pi cluster node 3 running DNS and monitoring services |
-| `small-slice-04` | Raspberry Pi 4    | Pi cluster node 4 running DNS and monitoring services |
-| `nas`            | Ubiquiti UNAS Pro | Network-attached storage for backups and larger files |
+| Name             | Platform                    | Role |
+| ---------------- | --------------------------- | ---- |
+| `big-slice-01`   | Minisforum MS-01 Proxmox VM | Main infrastructure server running core services |
+| `small-slice-01` | Raspberry Pi 4              | Pi cluster node 1 running DNS and monitoring services |
+| `small-slice-02` | Raspberry Pi 4              | Pi cluster node 2 running DNS and monitoring services |
+| `small-slice-03` | Raspberry Pi 4              | Pi cluster node 3 running DNS and monitoring services |
+| `small-slice-04` | Raspberry Pi 4              | Pi cluster node 4 running DNS and monitoring services |
+| `nas`            | Ubiquiti UNAS Pro           | Network-attached storage for backups and larger files |
 
 The NAS is not managed by these playbooks currently.
 
@@ -118,7 +118,7 @@ With permission, deployments can be triggered manually from the Actions tab with
 Actions > Deploy Infrastructure > Run workflow
 ```
 
-- **limit**: Deploy to specific hosts only (e.g., `big-slice,small-slice-01`)
+- **limit**: Deploy to specific hosts only (e.g., `big-slice-01,small-slice-01`)
 - **skip_check**: Skip dry run and deploy immediately (use with caution)
 
 ## 🔧 Development
@@ -179,7 +179,7 @@ ansible all -m shell -a "whoami" --become --ask-vault-pass
 ansible-inventory --list --ask-vault-pass
 
 # Debug specific host variables
-ansible big-slice -m debug -a "var=docker_services" --ask-vault-pass
+ansible big-slice-01 -m debug -a "var=docker_services" --ask-vault-pass
 ```
 
 ## 📄 License

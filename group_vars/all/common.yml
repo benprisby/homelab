@@ -32,7 +32,7 @@ chezmoi_repo: https://github.com/benprisby/dotfiles
 
 # NUT configuration
 nut_client_ups: ups
-nut_client_server: "{{ hostvars['big-slice']['ansible_host'] }}"
+nut_client_server: "{{ hostvars['big-slice-01']['ansible_host'] }}"
 nut_client_username: "{{ vault_nut_monitor_username }}"
 nut_client_password: "{{ vault_nut_monitor_password }}"
 
@@ -40,7 +40,7 @@ nut_client_password: "{{ vault_nut_monitor_password }}"
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:
   - "{{ ansible_user }}"
-docker_daemon_syslog_address: "{{ hostvars['big-slice']['ansible_host'] }}"
+docker_daemon_syslog_address: "{{ hostvars['big-slice-01']['ansible_host'] }}"
 docker_daemon_options:
   log-driver: syslog
   log-opts:

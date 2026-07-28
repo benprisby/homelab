@@ -165,8 +165,8 @@ filtering:
     - domain: unifi
       answer: {{ vault_unifi_address }}
       enabled: true
-    - domain: big-slice.home
-      answer: {{ hostvars['big-slice']['ansible_host'] }}
+    - domain: big-slice-01.home
+      answer: {{ hostvars['big-slice-01']['ansible_host'] }}
       enabled: true
     - domain: small-slice-01.home
       answer: {{ hostvars['small-slice-01']['ansible_host'] }}

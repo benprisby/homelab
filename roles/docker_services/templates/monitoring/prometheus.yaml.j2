@@ -14,7 +14,7 @@ scrape_configs:
   - job_name: node
     static_configs:
       - targets:
-          - "big-slice.home:9100"
+          - "big-slice-01.home:9100"
           - "small-slice-01.home:9100"
           - "small-slice-02.home:9100"
           - "small-slice-03.home:9100"
@@ -23,7 +23,7 @@ scrape_configs:
   - job_name: cadvisor
     static_configs:
       - targets:
-          - "big-slice.home:8080"
+          - "big-slice-01.home:8080"
           - "small-slice-01.home:8080"
           - "small-slice-02.home:8080"
           - "small-slice-03.home:8080"
@@ -32,7 +32,7 @@ scrape_configs:
   - job_name: docker
     static_configs:
       - targets:
-          - "big-slice.home:9323"
+          - "big-slice-01.home:9323"
           - "small-slice-01.home:9323"
           - "small-slice-02.home:9323"
           - "small-slice-03.home:9323"

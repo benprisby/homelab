@@ -1,7 +1,7 @@
 ---
 # Main infrastructure server
 hardware:
-  model: Intel NUC
+  model: Minisforum MS-01
   type: nuc
 
 docker_services:

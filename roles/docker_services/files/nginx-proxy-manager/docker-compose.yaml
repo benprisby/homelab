@@ -10,7 +10,7 @@ services:
       - "443:443"
     networks:
       proxy:
-        ipv4_address: 172.21.0.10
+        ipv4_address: 172.24.0.10
     volumes:
       - nginx_data:/data
       - letsencrypt_data:/etc/letsencrypt
@@ -24,8 +24,8 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.21.0.0/16
-          gateway: 172.21.0.1
+        - subnet: 172.24.0.0/16
+          gateway: 172.24.0.1
 
 volumes:
   nginx_data:

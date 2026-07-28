@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-        description: Limit deployment to specific hosts (e.g., big-slice,small-slice-01)
+        description: Limit deployment to specific hosts (e.g., big-slice-01,small-slice-01)
         required: false
         type: string
 
