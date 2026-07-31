@@ -165,6 +165,9 @@ filtering:
     - domain: unifi
       answer: {{ vault_unifi_address }}
       enabled: true
+    - domain: eastie.boston
+      answer: {{ hostvars['big-slice-01']['ansible_host'] }}
+      enabled: true
     - domain: big-slice-01.home
       answer: {{ hostvars['big-slice-01']['ansible_host'] }}
       enabled: true
