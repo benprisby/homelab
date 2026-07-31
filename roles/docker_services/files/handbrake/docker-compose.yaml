@@ -1,7 +1,7 @@
 ---
 services:
   handbrake:
-    image: jlesage/handbrake
+    image: jlesage/handbrake:v26.07.2
     container_name: handbrake
     restart: unless-stopped
     volumes:
