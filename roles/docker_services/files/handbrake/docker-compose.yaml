@@ -1,0 +1,36 @@
+---
+services:
+  handbrake:
+    image: jlesage/handbrake
+    container_name: handbrake
+    restart: unless-stopped
+    volumes:
+      - "handbrake_data:/config"
+      - type: volume
+        source: nas_media
+        target: /storage
+        read_only: true
+        volume:
+          subpath: input
+      - type: volume
+        source: nas_media
+        target: /output
+        volume:
+          subpath: output
+      - type: volume
+        source: nas_media
+        target: /watch
+        volume:
+          subpath: watch
+    ports:
+      - "5800:5800"
+
+volumes:
+  handbrake_data:
+
+  nas_media:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "${NAS_MEDIA_SHARE}/HandBrake"
+      o: "username=${NAS_MEDIA_USERNAME},password=${NAS_MEDIA_PASSWORD},file_mode=0777,dir_mode=0777,vers=3.0"
