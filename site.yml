@@ -4,24 +4,32 @@
   become: true
   roles:
     - common
+  tags:
+    - setup
 
 - name: Set up Docker on all Docker hosts
   hosts: docker_hosts
   become: true
   roles:
     - geerlingguy.docker
+  tags:
+    - setup
 
 - name: Deploy Docker services
   hosts: docker_hosts
   become: true
   roles:
     - docker_services
+  tags:
+    - deploy
 
 - name: Configure NUT clients on all hosts
   hosts: all
   become: true
   roles:
     - geerlingguy.nut_client
+  tags:
+    - nut
 
 - name: Deployment summary
   hosts: all
@@ -35,3 +43,5 @@
           IP: {{ ansible_host }}
           Docker Services: {{ docker_services | default([]) | sort | join(', ') }}
           Status: Deployment Complete
+  tags:
+    - always
