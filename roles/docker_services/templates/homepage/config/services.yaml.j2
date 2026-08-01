@@ -75,6 +75,18 @@
       container: network-optimizer
 
 - Infrastructure:
+  - Proxmox:
+      icon: proxmox
+      href: https://proxmox.eastie.boston
+      description: Hypervisor management
+
+  - Traefik:
+      icon: traefik
+      href: https://traefik.eastie.boston
+      description: Reverse proxy and SSL termination
+      server: big-slice-01
+      container: traefik
+
   - Portainer:
       icon: portainer
       href: https://portainer.eastie.boston
@@ -86,18 +98,6 @@
         url: https://portainer.eastie.boston
         env: 7  # Big Slice
         key: {{ vault_portainer_access_token }}
-
-  - Traefik:
-      icon: traefik
-      href: https://traefik.eastie.boston
-      description: Reverse proxy and SSL termination
-      server: big-slice-01
-      container: traefik
-
-  - Proxmox:
-      icon: proxmox
-      href: https://proxmox.eastie.boston
-      description: Hypervisor management
 
 - Media:
   - Jellyfin:
