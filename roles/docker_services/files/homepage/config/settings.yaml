@@ -13,7 +13,7 @@ layout:
     columns: 4
   Network:
     style: row
-    columns: 3
+    columns: 4
   Infrastructure:
     style: row
     columns: 2

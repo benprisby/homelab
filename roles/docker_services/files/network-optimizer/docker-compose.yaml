@@ -1,0 +1,23 @@
+---
+services:
+  network-optimizer:
+    image: ghcr.io/ozark-connect/network-optimizer:2.5.2
+    container_name: network-optimizer
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - network_optimizer_data:/app/data
+      - network_optimizer_logs:/app/logs
+    environment:
+      TZ: America/New_York
+      REVERSE_PROXIED_HOST_NAME: "networkoptimizer.eastie.boston"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8042/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+
+volumes:
+  network_optimizer_data:
+  network_optimizer_logs:
