@@ -4,7 +4,34 @@ theme: dark
 color: neutral
 favicon: https://benprisby.com/favicon.ico
 
+useEqualHeights: true
+disableCollapse: true
+
 layout:
   Monitoring:
     style: row
     columns: 4
+  Network:
+    style: row
+    columns: 3
+  Infrastructure:
+    style: row
+    columns: 2
+  Media:
+    style: row
+    columns: 2
+  Development:
+    style: row
+    columns: 4
+  AI:
+    style: row
+    columns: 4
+  Design:
+    style: row
+    columns: 4
+  Documents:
+    style: row
+    columns: 3
+  Smart Home:
+    style: row
+    columns: 3

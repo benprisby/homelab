@@ -11,7 +11,7 @@
   - Prometheus:
       icon: prometheus
       href: https://prometheus.eastie.boston
-      description: Monitoring database
+      description: Metrics database
       server: big-slice-01
       container: prometheus
       showStats: true
@@ -46,7 +46,7 @@
   - AdGuard Home (Primary):
       icon: adguard-home
       href: https://adguard1.eastie.boston
-      description: Main VLAN primary DNS
+      description: Main VLAN primary DNS resolver
       server: small-slice-01
       container: adguard-home
       widget:
@@ -58,7 +58,7 @@
   - AdGuard Home (Secondary):
       icon: adguard-home
       href: https://adguard2.eastie.boston
-      description: Main VLAN secondary DNS
+      description: Main VLAN failover DNS resolver
       server: small-slice-02
       container: adguard-home
       widget:
@@ -67,18 +67,7 @@
         username: {{ vault_adguard_username }}
         password: {{ vault_adguard_password }}
 
-- Servers:
-  - Jellyfin:
-      icon: jellyfin
-      href: https://jellyfin.eastie.boston
-      description: Home media server
-      widget:
-        type: jellyfin
-        url: https://jellyfin.eastie.boston
-        key: {{ vault_jellyfin_api_token }}
-        enableBlocks: true
-        enableMediaControl: false
-
+- Infrastructure:
   - Portainer:
       icon: portainer
       href: https://portainer.eastie.boston
@@ -94,7 +83,7 @@
   - Nginx Proxy Manager:
       icon: nginx-proxy-manager
       href: https://nginx.eastie.boston
-      description: Reverse proxy for home services
+      description: Reverse proxy and SSL termination
       server: big-slice-01
       container: nginx-proxy-manager
       widget:
@@ -103,26 +92,40 @@
         username: {{ vault_nginx_username }}
         password: {{ vault_nginx_password }}
 
+- Media:
+  - Jellyfin:
+      icon: jellyfin
+      href: https://jellyfin.eastie.boston
+      description: Home media server
+      widget:
+        type: jellyfin
+        url: https://jellyfin.eastie.boston
+        key: {{ vault_jellyfin_api_token }}
+        enableBlocks: true
+        enableMediaControl: false
+
+  - HandBrake:
+      icon: handbrake
+      href: https://handbrake.eastie.boston
+      description: Video transcoding tool
+      server: big-slice-01
+      container: handbrake
+
+- Development:
+  - IT Tools:
+      icon: mdi-toolbox
+      href: https://ittools.eastie.boston
+      description: Developer and network utilities
+      server: big-slice-01
+      container: it-tools
+
+- Documents:
   - Kiwix:
       icon: kiwix
       href: https://kiwix.eastie.boston
       description: Wikipedia archive
       server: big-slice-01
       container: kiwix-serve
-
-  - HandBrake:
-      icon: handbrake
-      href: https://handbrake.eastie.boston
-      description: Video conversion tool
-      server: big-slice-01
-      container: handbrake
-
-  - IT Tools:
-      icon: mdi-toolbox
-      href: https://ittools.eastie.boston
-      description: Useful IT tools
-      server: big-slice-01
-      container: it-tools
 
 - Smart Home:
   - Home Assistant:
