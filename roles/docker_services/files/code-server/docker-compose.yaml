@@ -1,0 +1,20 @@
+---
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:4.131.0
+    container_name: code-server
+    restart: unless-stopped
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=${TZ}
+      - PASSWORD=${CODE_SERVER_PASSWORD}
+      - DEFAULT_WORKSPACE=/workspace/docker
+    volumes:
+      - "code_server_data:/config"
+      - "/home/lbp/docker:/workspace/docker"
+    ports:
+      - "8088:8443"
+
+volumes:
+  code_server_data:

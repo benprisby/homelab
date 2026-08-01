@@ -5,6 +5,7 @@ hardware:
   type: nuc
 
 docker_services:
+  - code-server
   - convertx
   - drawio
   - excalidraw
