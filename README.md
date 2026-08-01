@@ -41,6 +41,7 @@ services are deployed on each server.
 - **IT Tools**: Developer and network utility collection
 - **Jellyfin**: Home media server
 - **Kiwix**: Offline Wikipedia archive
+- **Network Optimizer**: UniFi network analyzer
 - **Nginx Proxy Manager**: Reverse proxy and SSL management
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
 - **Portainer + Agents**: Docker container management for each server
