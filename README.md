@@ -26,20 +26,28 @@ The NAS is not managed by these playbooks currently.
 
 ## 🖥️ Services
 
-The following are the essential services I am currently running. The NUC runs most of the core services and the Pi
-cluster runs distributed services. The `docker_services` variable for each host configuration under `host_vars` defines
-which services are deployed on each server.
+The following are the services I am currently running. The NUC runs most of the core services and the Pi cluster runs
+distributed services. The `docker_services` variable for each host configuration under `host_vars` defines which
+services are deployed on each server.
 
 - **AdGuard Home**: Network-wide DNS filtering on main and IoT VLANs
+- **ConvertX**: Multi-format file and media conversion
 - **Docker Proxy**: Secure Docker API access
+- **draw.io**: Structured diagramming tool
+- **Excalidraw**: Freeform sketching and whiteboarding
 - **Graylog**: Centralized logging with MongoDB and OpenSearch
+- **HandBrake**: Video transcoding tool
 - **Homepage**: Service dashboard serving as a landing page
+- **IT Tools**: Developer and network utility collection
 - **Jellyfin**: Home media server
+- **Kiwix**: Offline Wikipedia archive
 - **Nginx Proxy Manager**: Reverse proxy and SSL management
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
 - **Portainer + Agents**: Docker container management for each server
 - **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
+- **Rackula**: Rack layout designer
 - **Scrypted**: NVR platform for camera management and HomeKit integration
+- **Stirling PDF**: PDF splitting, merging, and conversion
 
 The `docker_services` role deploys each of these Compose stacks onto one or more servers.
 
