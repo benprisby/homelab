@@ -5,6 +5,9 @@ hardware:
   type: nuc
 
 docker_services:
+  - convertx
+  - drawio
+  - excalidraw
   - graylog
   - handbrake
   - homepage
@@ -14,6 +17,8 @@ docker_services:
   - nginx-proxy-manager
   - nut-server
   - portainer
+  - rackula
+  - stirling-pdf
 
 # NUT configuration override for local server
 nut_client_server: 127.0.0.1

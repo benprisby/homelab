@@ -1,0 +1,38 @@
+---
+services:
+  rackula:
+    image: ghcr.io/rackulalives/rackula:v26.7.0-persist
+    container_name: rackula
+    restart: unless-stopped
+    depends_on:
+      rackula-api:
+        condition: service_healthy
+    environment:
+      - API_HOST=rackula-api
+      - API_PORT=3001
+      - RACKULA_STORAGE_MODE=server
+      - RACKULA_AUTH_MODE=none
+    ports:
+      - "8086:8080"
+
+  rackula-api:
+    image: ghcr.io/rackulalives/rackula-api:26.7.0
+    container_name: rackula-api
+    restart: unless-stopped
+    volumes:
+      - "rackula_data:/data"
+    environment:
+      - DATA_DIR=/data
+      - CORS_ORIGIN=https://rackula.eastie.boston
+      - RACKULA_AUTH_MODE=none
+    expose:
+      - "3001"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3001/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 5s
+      retries: 3
+
+volumes:
+  rackula_data:
