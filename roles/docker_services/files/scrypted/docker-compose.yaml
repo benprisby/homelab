@@ -6,7 +6,7 @@ services:
     network_mode: host
     volumes:
       - /etc/avahi/services:/etc/avahi/services:ro
-      - scrypted-data:/server/volume
+      - scrypted_data:/server/volume
     devices:
       - "/dev/dri:/dev/dri"
     environment:
@@ -15,4 +15,4 @@ services:
       driver: "none"
 
 volumes:
-  scrypted-data:
+  scrypted_data:
