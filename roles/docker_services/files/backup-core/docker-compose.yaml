@@ -1,0 +1,60 @@
+---
+services:
+  backup-core:
+    image: offen/docker-volume-backup:v2.48.2
+    container_name: backup-core
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - BACKUP_COMPRESSION=zst
+      - BACKUP_RETENTION_DAYS=30
+    volumes:
+      - "traefik_certs:/backup/traefik_certs:ro"
+      - "portainer_data:/backup/portainer_data:ro"
+      - "grafana_data:/backup/grafana_data:ro"
+      - "uptime_kuma_data:/backup/uptime_kuma_data:ro"
+      - "rackula_data:/backup/rackula_data:ro"
+      - "stirling_pdf_data:/backup/stirling_pdf_data:ro"
+      - "code_server_data:/backup/code_server_data:ro"
+      - "network_optimizer_data:/backup/network_optimizer_data:ro"
+      - "network_optimizer_logs:/backup/network_optimizer_logs:ro"
+      - "convertx_data:/backup/convertx_data:ro"
+      - "nas_backups:/archive"
+
+volumes:
+  traefik_certs:
+    external: true
+    name: traefik_traefik_certs
+  portainer_data:
+    external: true
+    name: portainer_portainer_data
+  grafana_data:
+    external: true
+    name: monitoring_grafana_data
+  uptime_kuma_data:
+    external: true
+    name: monitoring_uptime_kuma_data
+  rackula_data:
+    external: true
+    name: rackula_rackula_data
+  stirling_pdf_data:
+    external: true
+    name: stirling-pdf_stirling_pdf_data
+  code_server_data:
+    external: true
+    name: code-server_code_server_data
+  network_optimizer_data:
+    external: true
+    name: network-optimizer_network_optimizer_data
+  network_optimizer_logs:
+    external: true
+    name: network-optimizer_network_optimizer_logs
+  convertx_data:
+    external: true
+    name: convertx_convertx_data
+  nas_backups:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "${NAS_BACKUPS_SHARE}/${NAS_BACKUPS_PATH}"
+      o: "username=${NAS_BACKUPS_USERNAME},password=${NAS_BACKUPS_PASSWORD},file_mode=0777,dir_mode=0777,vers=3.0"

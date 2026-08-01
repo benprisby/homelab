@@ -5,6 +5,7 @@ hardware:
   type: raspberry_pi
 
 docker_services:
+  - backup-scrypted
   - dockerproxy
   - monitoring-agent
   - portainer-agent

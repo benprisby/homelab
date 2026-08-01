@@ -31,6 +31,7 @@ distributed services. The `docker_services` variable for each host configuration
 services are deployed on each server.
 
 - **AdGuard Home**: Network-wide DNS filtering on main and IoT VLANs
+- **Backup Agents**: Nightly volume backups to NAS for select services on each server
 - **Code Server**: Browser-based VS Code
 - **ConvertX**: Multi-format file and media conversion
 - **Docker Proxy**: Secure Docker API access

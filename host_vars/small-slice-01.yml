@@ -6,6 +6,7 @@ hardware:
 
 docker_services:
   - adguard
+  - backup-adguard
   - dockerproxy
   - monitoring-agent
   - portainer-agent

@@ -5,6 +5,7 @@ hardware:
   type: nuc
 
 docker_services:
+  - backup-core
   - code-server
   - convertx
   - drawio

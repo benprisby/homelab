@@ -1,0 +1,24 @@
+---
+services:
+  backup-adguard:
+    image: offen/docker-volume-backup:v2.48.2
+    container_name: backup-adguard
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - BACKUP_COMPRESSION=zst
+      - BACKUP_RETENTION_DAYS=30
+    volumes:
+      - "adguard_data:/backup/adguard_data:ro"
+      - "nas_backups:/archive"
+
+volumes:
+  adguard_data:
+    external: true
+    name: adguard_adguard_data
+  nas_backups:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "${NAS_BACKUPS_SHARE}/${NAS_BACKUPS_PATH}"
+      o: "username=${NAS_BACKUPS_USERNAME},password=${NAS_BACKUPS_PASSWORD},file_mode=0777,dir_mode=0777,vers=3.0"
