@@ -21,16 +21,23 @@ services:
     restart: unless-stopped
     volumes:
       - ./peanut.yaml:/config/settings.yml:ro
-    ports:
-      - 3494:8080
     environment:
       - DISABLE_CONFIG_FILE=true  # No saving
       - AUTH_DISABLED=true
     networks:
       - nut
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.peanut.rule=Host(`peanut.eastie.boston`)"
+      - "traefik.http.routers.peanut.entrypoints=websecure"
+      - "traefik.http.routers.peanut.tls.certresolver=cloudflare"
+      - "traefik.http.services.peanut.loadbalancer.server.port=8080"
 
 networks:
   nut:
+  traefik:
+    external: true
 
 volumes:
   peanut_data:

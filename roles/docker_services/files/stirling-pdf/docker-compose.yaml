@@ -6,10 +6,20 @@ services:
     restart: unless-stopped
     volumes:
       - "stirling_pdf_data:/configs"
-    ports:
-      - "8085:8080"
     environment:
       - SECURITY_ENABLELOGIN=false
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stirling-pdf.rule=Host(`stirling.eastie.boston`)"
+      - "traefik.http.routers.stirling-pdf.entrypoints=websecure"
+      - "traefik.http.routers.stirling-pdf.tls.certresolver=cloudflare"
+      - "traefik.http.services.stirling-pdf.loadbalancer.server.port=8080"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   stirling_pdf_data:

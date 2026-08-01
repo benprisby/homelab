@@ -16,11 +16,11 @@ docker_services:
   - kiwix
   - monitoring
   - network-optimizer
-  - nginx-proxy-manager
   - nut-server
   - portainer
   - rackula
   - stirling-pdf
+  - traefik
 
 # NUT configuration override for local server
 nut_client_server: 127.0.0.1

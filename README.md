@@ -43,13 +43,13 @@ services are deployed on each server.
 - **Jellyfin**: Home media server
 - **Kiwix**: Offline Wikipedia archive
 - **Network Optimizer**: UniFi network analyzer
-- **Nginx Proxy Manager**: Reverse proxy and SSL management
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
 - **Portainer + Agents**: Docker container management for each server
 - **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
 - **Rackula**: Rack layout designer
 - **Scrypted**: NVR platform for camera management and HomeKit integration
 - **Stirling PDF**: PDF splitting, merging, and conversion
+- **Traefik**: Reverse proxy, SSL termination, and Let's Encrypt cert automation via Cloudflare DNS-01
 
 The `docker_services` role deploys each of these Compose stacks onto one or more servers.
 

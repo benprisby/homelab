@@ -87,17 +87,12 @@
         env: 7  # Big Slice
         key: {{ vault_portainer_access_token }}
 
-  - Nginx Proxy Manager:
-      icon: nginx-proxy-manager
-      href: https://nginx.eastie.boston
+  - Traefik:
+      icon: traefik
+      href: https://traefik.eastie.boston
       description: Reverse proxy and SSL termination
       server: big-slice-01
-      container: nginx-proxy-manager
-      widget:
-        type: npm
-        url: https://nginx.eastie.boston
-        username: {{ vault_nginx_username }}
-        password: {{ vault_nginx_password }}
+      container: traefik
 
 - Media:
   - Jellyfin:

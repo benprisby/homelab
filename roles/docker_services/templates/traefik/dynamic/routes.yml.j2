@@ -1,0 +1,142 @@
+---
+http:
+  routers:
+    adguard1:
+      rule: "Host(`adguard1.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: adguard1
+
+    adguard2:
+      rule: "Host(`adguard2.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: adguard2
+
+    homeassistant:
+      rule: "Host(`homeassistant.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: homeassistant
+
+    jellyfin:
+      rule: "Host(`jellyfin.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: jellyfin
+
+    laserprinter:
+      rule: "Host(`laserprinter.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: laserprinter
+
+    networkoptimizer:
+      rule: "Host(`networkoptimizer.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: networkoptimizer
+
+    octoprint:
+      rule: "Host(`octoprint.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: octoprint
+
+    proxmox:
+      rule: "Host(`proxmox.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: proxmox
+
+    scrypted:
+      rule: "Host(`scrypted.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: scrypted
+
+    scrypted-common:
+      rule: "Host(`scrypted-common.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: scrypted-common
+
+  services:
+    adguard1:
+      loadBalancer:
+        servers:
+          - url: "http://{{ hostvars['small-slice-01']['ansible_host'] }}:3000"
+
+    adguard2:
+      loadBalancer:
+        servers:
+          - url: "http://{{ hostvars['small-slice-02']['ansible_host'] }}:3000"
+
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: "http://10.20.0.15:8123"
+
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://10.20.0.23:8096"
+
+    laserprinter:
+      loadBalancer:
+        serversTransport: insecure-skip-verify
+        servers:
+          - url: "https://10.20.10.20:443"
+
+    networkoptimizer:
+      loadBalancer:
+        servers:
+          - url: "http://{{ hostvars['big-slice-01']['ansible_host'] }}:8042"
+
+    octoprint:
+      loadBalancer:
+        serversTransport: insecure-skip-verify
+        servers:
+          - url: "https://10.20.10.10:443"
+
+    proxmox:
+      loadBalancer:
+        serversTransport: insecure-skip-verify
+        servers:
+          - url: "https://10.20.0.20:8006"
+
+    scrypted:
+      loadBalancer:
+        serversTransport: insecure-skip-verify
+        servers:
+          - url: "https://{{ hostvars['small-slice-03']['ansible_host'] }}:10443"
+
+    scrypted-common:
+      loadBalancer:
+        serversTransport: insecure-skip-verify
+        servers:
+          - url: "https://{{ hostvars['small-slice-04']['ansible_host'] }}:10443"
+
+  serversTransports:
+    insecure-skip-verify:
+      insecureSkipVerify: true

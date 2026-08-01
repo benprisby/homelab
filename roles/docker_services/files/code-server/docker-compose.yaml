@@ -13,8 +13,18 @@ services:
     volumes:
       - "code_server_data:/config"
       - "/home/lbp/docker:/workspace/docker"
-    ports:
-      - "8088:8443"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.code-server.rule=Host(`code.eastie.boston`)"
+      - "traefik.http.routers.code-server.entrypoints=websecure"
+      - "traefik.http.routers.code-server.tls.certresolver=cloudflare"
+      - "traefik.http.services.code-server.loadbalancer.server.port=8443"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   code_server_data:

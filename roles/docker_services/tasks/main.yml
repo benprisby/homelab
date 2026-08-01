@@ -55,6 +55,14 @@
     - avahi-daemon.socket
   become: true
 
+- name: Create shared Traefik network
+  community.docker.docker_network:
+    name: traefik
+    state: present
+  become: true
+  become_user: "{{ ansible_user }}"
+  when: "'traefik' in docker_services"
+
 - name: Start Docker services
   community.docker.docker_compose_v2:
     project_src: "{{ docker_projects_path }}/{{ item }}"

@@ -4,5 +4,15 @@ services:
     image: jgraph/drawio:31.1.5
     container_name: drawio
     restart: unless-stopped
-    ports:
-      - "8084:8080"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drawio.rule=Host(`drawio.eastie.boston`)"
+      - "traefik.http.routers.drawio.entrypoints=websecure"
+      - "traefik.http.routers.drawio.tls.certresolver=cloudflare"
+      - "traefik.http.services.drawio.loadbalancer.server.port=8080"
+
+networks:
+  traefik:
+    external: true

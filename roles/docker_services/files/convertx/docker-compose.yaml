@@ -6,12 +6,22 @@ services:
     restart: unless-stopped
     volumes:
       - "convertx_data:/app/data"
-    ports:
-      - "8087:3000"
     environment:
       - HTTP_ALLOWED=true
       - ALLOW_UNAUTHENTICATED=true
       - UNAUTHENTICATED_USER_SHARING=true
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.convertx.rule=Host(`convertx.eastie.boston`)"
+      - "traefik.http.routers.convertx.entrypoints=websecure"
+      - "traefik.http.routers.convertx.tls.certresolver=cloudflare"
+      - "traefik.http.services.convertx.loadbalancer.server.port=3000"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   convertx_data:

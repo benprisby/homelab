@@ -6,9 +6,19 @@ services:
     restart: unless-stopped
     volumes:
       - nas_wikipedia:/data:ro
-    ports:
-      - "8081:8080"
     command: "*.zim"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kiwix.rule=Host(`kiwix.eastie.boston`)"
+      - "traefik.http.routers.kiwix.entrypoints=websecure"
+      - "traefik.http.routers.kiwix.tls.certresolver=cloudflare"
+      - "traefik.http.services.kiwix.loadbalancer.server.port=8080"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   nas_wikipedia:

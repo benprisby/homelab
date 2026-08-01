@@ -12,8 +12,15 @@ services:
       - API_PORT=3001
       - RACKULA_STORAGE_MODE=server
       - RACKULA_AUTH_MODE=none
-    ports:
-      - "8086:8080"
+    networks:
+      - rackula
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rackula.rule=Host(`rackula.eastie.boston`)"
+      - "traefik.http.routers.rackula.entrypoints=websecure"
+      - "traefik.http.routers.rackula.tls.certresolver=cloudflare"
+      - "traefik.http.services.rackula.loadbalancer.server.port=8080"
 
   rackula-api:
     image: ghcr.io/rackulalives/rackula-api:26.7.0
@@ -25,6 +32,8 @@ services:
       - DATA_DIR=/data
       - CORS_ORIGIN=https://rackula.eastie.boston
       - RACKULA_AUTH_MODE=none
+    networks:
+      - rackula
     expose:
       - "3001"
     healthcheck:
@@ -33,6 +42,11 @@ services:
       timeout: 10s
       start_period: 5s
       retries: 3
+
+networks:
+  rackula:
+  traefik:
+    external: true
 
 volumes:
   rackula_data:

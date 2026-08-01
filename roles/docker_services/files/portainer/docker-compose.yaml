@@ -9,7 +9,20 @@ services:
       - "portainer_data:/data"
     ports:
       - "8000:8000"
-      - "9443:9443"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.eastie.boston`)"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.tls.certresolver=cloudflare"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9443"
+      - "traefik.http.services.portainer.loadbalancer.server.scheme=https"
+      - "traefik.http.services.portainer.loadbalancer.serversTransport=insecure-skip-verify@file"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   portainer_data:

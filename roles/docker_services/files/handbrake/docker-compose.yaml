@@ -22,8 +22,18 @@ services:
         target: /watch
         volume:
           subpath: watch
-    ports:
-      - "5800:5800"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.handbrake.rule=Host(`handbrake.eastie.boston`)"
+      - "traefik.http.routers.handbrake.entrypoints=websecure"
+      - "traefik.http.routers.handbrake.tls.certresolver=cloudflare"
+      - "traefik.http.services.handbrake.loadbalancer.server.port=5800"
+
+networks:
+  traefik:
+    external: true
 
 volumes:
   handbrake_data:

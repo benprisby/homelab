@@ -37,6 +37,9 @@ nut_client_server: "{{ hostvars['big-slice-01']['ansible_host'] }}"
 nut_client_username: "{{ vault_nut_monitor_username }}"
 nut_client_password: "{{ vault_nut_monitor_password }}"
 
+# Traefik configuration
+acme_email: ben@prisby.com
+
 # Docker configuration
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:

@@ -4,5 +4,15 @@ services:
     image: excalidraw/excalidraw:latest
     container_name: excalidraw
     restart: unless-stopped
-    ports:
-      - "8083:80"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.excalidraw.rule=Host(`excalidraw.eastie.boston`)"
+      - "traefik.http.routers.excalidraw.entrypoints=websecure"
+      - "traefik.http.routers.excalidraw.tls.certresolver=cloudflare"
+      - "traefik.http.services.excalidraw.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    external: true
