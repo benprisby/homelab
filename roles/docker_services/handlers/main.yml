@@ -6,19 +6,27 @@
   loop: >-
     {{
       (
-        docker_services_copy_result.results | default([])
-        | selectattr('changed')
-        | map(attribute='item')
-        | list
-        +
-        docker_services_template_result.results | default([])
-        | selectattr('changed')
-        | map(attribute='item.path')
-        | map('split', '/')
-        | map('first')
-        | list
+        (
+          docker_services_copy_result.results | default([])
+          | selectattr('changed')
+          | map(attribute='item')
+          | list
+          +
+          docker_services_template_result.results | default([])
+          | selectattr('changed')
+          | map(attribute='item.path')
+          | map('split', '/')
+          | map('first')
+          | list
+        )
+        | unique
       )
-      | unique
+      | difference(
+          docker_services_start_result.results | default([])
+          | selectattr('changed')
+          | map(attribute='item')
+          | list
+        )
     }}
   loop_control:
     loop_var: service_name
