@@ -55,13 +55,18 @@
     - avahi-daemon.socket
   become: true
 
-- name: Create shared Traefik network
+- name: Create shared Docker networks
   community.docker.docker_network:
-    name: traefik
+    name: "{{ item.name }}"
     state: present
+  loop:
+    - name: traefik
+      required_by: traefik
+    - name: monitoring
+      required_by: monitoring
   become: true
   become_user: "{{ ansible_user }}"
-  when: "'traefik' in docker_services"
+  when: "item.required_by in docker_services"
 
 - name: Start Docker services
   community.docker.docker_compose_v2:

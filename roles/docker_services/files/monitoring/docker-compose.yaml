@@ -150,6 +150,7 @@ services:
 
 networks:
   monitoring:
+    external: true
   traefik:
     external: true
 

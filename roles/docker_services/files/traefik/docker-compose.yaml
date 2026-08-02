@@ -13,6 +13,9 @@ services:
       - "--providers.file.watch=true"
       - "--entryPoints.web.address=:80"
       - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.metrics.address=:8082"
+      - "--metrics.prometheus=true"
+      - "--metrics.prometheus.entryPoint=metrics"
       - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
       - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
       - "--certificatesResolvers.cloudflare.acme.email=${ACME_EMAIL}"
@@ -31,6 +34,7 @@ services:
       - "443:443"
     networks:
       - traefik
+      - monitoring
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.eastie.boston`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
@@ -40,6 +44,8 @@ services:
 
 networks:
   traefik:
+    external: true
+  monitoring:
     external: true
 
 volumes:

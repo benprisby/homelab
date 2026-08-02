@@ -54,10 +54,14 @@ scrape_configs:
     static_configs:
       - targets: ["uptime-kuma:3001"]
     basic_auth:
-      username: "{{ vault_uptime_kuma_username }}"
-      password: "{{ vault_uptime_kuma_password }}"
+      password: "{{ vault_uptime_kuma_api_key }}"
 
   - job_name: nut
     metrics_path: /ups_metrics
     static_configs:
       - targets: ["nut-exporter:9199"]
+
+  - job_name: traefik
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["traefik:8082"]
