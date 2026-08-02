@@ -7,6 +7,12 @@
       server: big-slice-01
       container: grafana
       showStats: true
+      widget:
+        type: grafana
+        version: 2
+        url: https://grafana.eastie.boston
+        username: {{ vault_grafana_username }}
+        password: {{ vault_grafana_password }}
 
   - Prometheus:
       icon: prometheus
@@ -15,14 +21,9 @@
       server: big-slice-01
       container: prometheus
       showStats: true
-
-  - Graylog:
-      icon: graylog
-      href: https://graylog.eastie.boston
-      description: Centralized log server
-      server: big-slice-01
-      container: graylog
-      showStats: true
+      widget:
+        type: prometheus
+        url: https://prometheus.eastie.boston
 
   - Uptime Kuma:
       icon: uptime-kuma
@@ -31,6 +32,10 @@
       server: big-slice-01
       container: uptime-kuma
       showStats: true
+      widget:
+        type: uptimekuma
+        url: https://uptime.eastie.boston
+        slug: homelab
 
 - Network:
   - Unifi:
@@ -79,6 +84,11 @@
       icon: proxmox
       href: https://proxmox.eastie.boston
       description: Hypervisor management
+      widget:
+        type: proxmox
+        url: https://proxmox.eastie.boston
+        username: {{ vault_proxmox_api_token_id }}
+        password: {{ vault_proxmox_api_token_secret }}
 
   - Traefik:
       icon: traefik
@@ -86,6 +96,9 @@
       description: Reverse proxy and SSL termination
       server: big-slice-01
       container: traefik
+      widget:
+        type: traefik
+        url: https://traefik.eastie.boston
 
   - Portainer:
       icon: portainer
@@ -117,6 +130,7 @@
       description: Video transcoding tool
       server: big-slice-01
       container: handbrake
+      showStats: true
 
   - ConvertX:
       icon: mdi-swap-horizontal
@@ -124,6 +138,7 @@
       description: Multi-format file converter
       server: big-slice-01
       container: convertx
+      showStats: true
 
 - Development:
   - IT Tools:
@@ -132,6 +147,7 @@
       description: Developer and network utilities
       server: big-slice-01
       container: it-tools
+      showStats: true
 
   - Code Server:
       icon: visual-studio-code
@@ -139,6 +155,7 @@
       description: Browser-based VS Code
       server: big-slice-01
       container: code-server
+      showStats: true
 
 - Design:
   - Excalidraw:
@@ -193,6 +210,7 @@
       description: Home camera integration platform
       server: small-slice-03
       container: scrypted
+      showStats: true
 
   - Scrypted (Common):
       icon: scrypted
@@ -200,6 +218,7 @@
       description: Building camera integration platform
       server: small-slice-04
       container: scrypted
+      showStats: true
 
   - 3D Printer:
       icon: octoprint

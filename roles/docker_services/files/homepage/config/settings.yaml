@@ -10,7 +10,7 @@ disableCollapse: true
 layout:
   Monitoring:
     style: row
-    columns: 4
+    columns: 3
   Network:
     style: row
     columns: 4
