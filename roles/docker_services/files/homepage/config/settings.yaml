@@ -22,10 +22,10 @@ layout:
     columns: 3
   Development:
     style: row
-    columns: 4
+    columns: 2
   AI:
     style: row
-    columns: 4
+    columns: 2
   Design:
     style: row
     columns: 3
