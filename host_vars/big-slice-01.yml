@@ -10,7 +10,6 @@ docker_services:
   - convertx
   - drawio
   - excalidraw
-  - graylog
   - handbrake
   - homepage
   - it-tools

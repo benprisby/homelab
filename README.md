@@ -37,7 +37,6 @@ services are deployed on each server.
 - **Docker Proxy**: Secure Docker API access
 - **draw.io**: Structured diagramming tool
 - **Excalidraw**: Freeform sketching and whiteboarding
-- **Graylog**: Centralized logging with MongoDB and OpenSearch
 - **HandBrake**: Video transcoding tool
 - **Homepage**: Service dashboard serving as a landing page
 - **IT Tools**: Developer and network utility collection
@@ -104,7 +103,6 @@ Services are assigned per-host in `host_vars` files, each of which is a Compose 
 
 ```yaml
 docker_services:
-  - graylog
   - monitoring
   - portainer
 ```
