@@ -41,3 +41,36 @@ loki.write "default" {
     url = "http://127.0.0.1:3100/loki/api/v1/push"
   }
 }
+
+loki.relabel "syslog" {
+  forward_to = [loki.write.syslog.receiver]
+
+  rule {
+    action        = "replace"
+    source_labels = ["__syslog_message_hostname"]
+    target_label  = "host"
+  }
+}
+
+loki.source.syslog "external" {
+  listener {
+    address  = "0.0.0.0:1514"
+    protocol = "udp"
+    labels   = { job = "syslog" }
+  }
+
+  listener {
+    address  = "0.0.0.0:1514"
+    protocol = "tcp"
+    labels   = { job = "syslog" }
+  }
+
+  relabel_rules = loki.relabel.syslog.rules
+  forward_to    = [loki.relabel.syslog.receiver]
+}
+
+loki.write "syslog" {
+  endpoint {
+    url = "http://127.0.0.1:3100/loki/api/v1/push"
+  }
+}
