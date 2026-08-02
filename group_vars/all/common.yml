@@ -40,6 +40,9 @@ nut_client_password: "{{ vault_nut_monitor_password }}"
 # Traefik configuration
 acme_email: ben@prisby.com
 
+# Network configuration
+network_connection_name: "Wired connection 1"
+
 # Docker configuration
 docker_projects_path: "/home/{{ ansible_user }}/docker"
 docker_users:

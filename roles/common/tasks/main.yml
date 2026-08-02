@@ -64,6 +64,17 @@
   notify: Reboot required
   become: true
 
+- name: Configure static ULA IPv6 address
+  community.general.nmcli:
+    conn_name: "{{ network_connection_name }}"
+    type: ethernet
+    method6: auto
+    ip6: "{{ network_ula_ipv6_address }}"
+    conn_reload: true
+    state: present
+  become: true
+  when: network_ula_ipv6_address is defined
+
 - name: Enable cgroups on Raspberry Pi
   ansible.builtin.replace:
     path: /boot/firmware/cmdline.txt

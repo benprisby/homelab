@@ -4,6 +4,9 @@ hardware:
   model: Raspberry Pi 4
   type: raspberry_pi
 
+# Static ULA IPv6 address (LAN VLAN)
+network_ula_ipv6_address: fdf8:151d:2d13::13/64
+
 docker_services:
   - backup-scrypted
   - dockerproxy
