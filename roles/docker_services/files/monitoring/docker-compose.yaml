@@ -114,7 +114,7 @@ services:
       - monitoring
 
   uptime-kuma:
-    image: louislam/uptime-kuma:2.4.0
+    image: louislam/uptime-kuma:2.5.0
     container_name: uptime-kuma
     restart: unless-stopped
     volumes:
