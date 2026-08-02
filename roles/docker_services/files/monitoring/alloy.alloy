@@ -46,9 +46,80 @@ loki.relabel "syslog" {
   forward_to = [loki.write.syslog.receiver]
 
   rule {
+    action      = "labelmap"
+    regex       = "__syslog_message_(.+)"
+    replacement = "syslog_$1"
+  }
+
+  rule {
     action        = "replace"
-    source_labels = ["__syslog_message_hostname"]
+    source_labels = ["syslog_hostname"]
+    regex         = "(.*)"
     target_label  = "host"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "emergency"
+    target_label  = "level"
+    replacement   = "fatal"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "alert"
+    target_label  = "level"
+    replacement   = "fatal"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "critical"
+    target_label  = "level"
+    replacement   = "critical"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "error"
+    target_label  = "level"
+    replacement   = "error"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "warning"
+    target_label  = "level"
+    replacement   = "warn"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "notice"
+    target_label  = "level"
+    replacement   = "info"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "informational"
+    target_label  = "level"
+    replacement   = "info"
+  }
+
+  rule {
+    action        = "replace"
+    source_labels = ["syslog_severity"]
+    regex         = "debug"
+    target_label  = "level"
+    replacement   = "debug"
   }
 }
 
