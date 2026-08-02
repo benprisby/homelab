@@ -1,0 +1,43 @@
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "containers" {
+  targets = discovery.docker.containers.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_log_stream"]
+    target_label  = "stream"
+  }
+}
+
+loki.source.docker "containers" {
+  host          = "unix:///var/run/docker.sock"
+  targets       = discovery.relabel.containers.output
+  relabel_rules = discovery.relabel.containers.rules
+  labels        = {}
+  forward_to    = [loki.write.default.receiver]
+}
+
+loki.source.journal "system" {
+  path       = "/var/log/journal"
+  max_age    = "24h0m0s"
+  labels     = { job = "systemd-journal" }
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+  external_labels = {
+    host = "big-slice-01",
+  }
+
+  endpoint {
+    url = "http://127.0.0.1:3100/loki/api/v1/push"
+  }
+}

@@ -148,6 +148,38 @@ services:
     networks:
       - monitoring
 
+  loki:
+    image: grafana/loki:3.7.4
+    container_name: loki
+    restart: unless-stopped
+    volumes:
+      - "./loki.yaml:/etc/loki/loki.yaml:ro"
+      - "loki_data:/loki"
+    command:
+      - "-config.file=/etc/loki/loki.yaml"
+    ports:
+      - "3100:3100"
+    networks:
+      - monitoring
+
+  alloy:
+    image: grafana/alloy:v1.18.0
+    container_name: alloy
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - "./alloy.alloy:/etc/alloy/config.alloy:ro"
+      - "alloy_data:/var/lib/alloy/data"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/var/log/journal:/var/log/journal:ro"
+      - "/etc/machine-id:/etc/machine-id:ro"
+    command:
+      - "run"
+      - "--server.http.listen-addr=0.0.0.0:12345"
+      - "--storage.path=/var/lib/alloy/data"
+      - "--disable-reporting"
+      - "/etc/alloy/config.alloy"
+
 networks:
   monitoring:
     external: true
@@ -158,3 +190,5 @@ volumes:
   prometheus_data:
   grafana_data:
   uptime_kuma_data:
+  loki_data:
+  alloy_data:

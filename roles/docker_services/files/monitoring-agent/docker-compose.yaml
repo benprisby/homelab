@@ -33,5 +33,25 @@ services:
     networks:
       - monitoring
 
+  alloy:
+    image: grafana/alloy:v1.18.0
+    container_name: alloy
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - "./alloy.alloy:/etc/alloy/config.alloy:ro"
+      - "alloy_data:/var/lib/alloy/data"
+      - "/var/log/journal:/var/log/journal:ro"
+      - "/etc/machine-id:/etc/machine-id:ro"
+    command:
+      - "run"
+      - "--server.http.listen-addr=0.0.0.0:12345"
+      - "--storage.path=/var/lib/alloy/data"
+      - "--disable-reporting"
+      - "/etc/alloy/config.alloy"
+
 networks:
   monitoring:
+
+volumes:
+  alloy_data:

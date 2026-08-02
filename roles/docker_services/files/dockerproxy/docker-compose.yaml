@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - CONTAINERS=1
+      - NETWORKS=1
       - SERVICES=1
       - TASKS=1
       - POST=0

@@ -42,6 +42,7 @@ services are deployed on each server.
 - **IT Tools**: Developer and network utility collection
 - **Jellyfin**: Home media server
 - **Kiwix**: Offline Wikipedia archive
+- **Loki + Alloy**: Centralized log aggregation for Docker container and host syslog across all servers
 - **Network Optimizer**: UniFi network analyzer
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
 - **Ollama + Open WebUI**: Local LLM runtime and chat interface
