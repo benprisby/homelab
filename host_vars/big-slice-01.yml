@@ -17,6 +17,7 @@ docker_services:
   - monitoring
   - network-optimizer
   - nut-server
+  - ollama
   - portainer
   - rackula
   - stirling-pdf

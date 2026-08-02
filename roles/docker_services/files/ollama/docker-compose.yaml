@@ -1,0 +1,40 @@
+---
+services:
+  ollama:
+    image: ollama/ollama:0.32.5
+    container_name: ollama
+    restart: unless-stopped
+    volumes:
+      - "ollama_data:/root/.ollama"
+    networks:
+      - ollama
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.11.0
+    container_name: open-webui
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+    volumes:
+      - "open_webui_data:/app/backend/data"
+    networks:
+      - ollama
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.open-webui.rule=Host(`ai.eastie.boston`)"
+      - "traefik.http.routers.open-webui.entrypoints=websecure"
+      - "traefik.http.routers.open-webui.tls.certresolver=cloudflare"
+      - "traefik.http.services.open-webui.loadbalancer.server.port=8080"
+
+networks:
+  ollama:
+  traefik:
+    external: true
+
+volumes:
+  ollama_data:
+  open_webui_data:
