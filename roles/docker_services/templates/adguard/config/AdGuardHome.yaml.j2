@@ -22,6 +22,7 @@ theme: auto
 dns:
   bind_hosts:
     - 0.0.0.0
+    - "::"
   port: 53
   anonymize_client_ip: false
   ratelimit: 100
@@ -67,7 +68,7 @@ dns:
   handle_ddr: true
   ipset: []
   ipset_file: ""
-  bootstrap_prefer_ipv6: false
+  bootstrap_prefer_ipv6: true
   upstream_timeout: 10s
   private_networks: []
   use_private_ptr_resolvers: false
