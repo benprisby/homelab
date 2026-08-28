@@ -1,7 +1,7 @@
 ---
 services:
   ollama:
-    image: ollama/ollama:0.32.15
+    image: ollama/ollama:0.33.1
     container_name: ollama
     restart: unless-stopped
     volumes:
@@ -10,7 +10,7 @@ services:
       - ollama
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:v0.11.0
+    image: ghcr.io/open-webui/open-webui:v0.11.1
     container_name: open-webui
     restart: unless-stopped
     depends_on:
