@@ -149,7 +149,7 @@ services:
       - monitoring
 
   loki:
-    image: grafana/loki:3.7.6
+    image: grafana/loki:3.7.7
     container_name: loki
     restart: unless-stopped
     volumes:
@@ -163,7 +163,7 @@ services:
       - monitoring
 
   alloy:
-    image: grafana/alloy:v1.19.0
+    image: grafana/alloy:v1.19.2
     container_name: alloy
     restart: unless-stopped
     network_mode: host
