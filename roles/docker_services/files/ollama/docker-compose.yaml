@@ -10,7 +10,7 @@ services:
       - ollama
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:v0.11.2
+    image: ghcr.io/open-webui/open-webui:v0.11.3
     container_name: open-webui
     restart: unless-stopped
     depends_on:
