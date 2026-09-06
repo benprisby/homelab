@@ -45,7 +45,6 @@ services are deployed on each server.
 - **Loki + Alloy**: Centralized log aggregation for Docker container and host syslog across all servers
 - **Network Optimizer**: UniFi network analyzer
 - **NUT (Network UPS Tools)**: UPS monitoring and automatic shutdown protection
-- **Ollama + Open WebUI**: Local LLM runtime and chat interface
 - **Portainer + Agents**: Docker container management for each server
 - **Prometheus/Grafana + Agents**: Monitoring stack with node and container exporters on each server
 - **Rackula**: Rack layout designer
