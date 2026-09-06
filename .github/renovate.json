@@ -25,5 +25,15 @@
       ],
       "groupName": "Ansible non-major"
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Track Squoosh's pinned dev-branch commit, since upstream publishes no version tags compatible with this build",
+      "fileMatch": ["^roles/docker_services/files/squoosh/Dockerfile$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?) currentValue=(?<currentValue>.*?)\\s+ARG SQUOOSH_COMMIT=(?<currentDigest>.*)\\s"
+      ]
+    }
   ]
 }

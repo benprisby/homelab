@@ -1,0 +1,18 @@
+---
+services:
+  squoosh:
+    build: .
+    container_name: squoosh
+    restart: unless-stopped
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.squoosh.rule=Host(`squoosh.eastie.boston`)"
+      - "traefik.http.routers.squoosh.entrypoints=websecure"
+      - "traefik.http.routers.squoosh.tls.certresolver=cloudflare"
+      - "traefik.http.services.squoosh.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    external: true

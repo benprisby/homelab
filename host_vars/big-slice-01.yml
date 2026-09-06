@@ -23,6 +23,7 @@ docker_services:
   - ollama
   - portainer
   - rackula
+  - squoosh
   - stirling-pdf
   - traefik
 
