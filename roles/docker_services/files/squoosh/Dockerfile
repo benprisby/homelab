@@ -10,7 +10,7 @@ RUN apk add --no-cache git \
 RUN npm ci
 RUN npm run build
 
-FROM nginx:1.31.2-alpine
+FROM nginx:1.31.5-alpine
 
 COPY --from=build /src/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
