@@ -1,7 +1,7 @@
 ---
 services:
   backup-core:
-    image: offen/docker-volume-backup:v2.48.2
+    image: offen/docker-volume-backup:v2.49.0
     container_name: backup-core
     restart: unless-stopped
     environment:
