@@ -10,6 +10,7 @@ network_ula_ipv6_address: fdf8:151d:2d13::11/64
 docker_services:
   - adguard
   - backup-adguard
+  - dkron
   - dockerproxy
   - monitoring-agent
   - portainer-agent

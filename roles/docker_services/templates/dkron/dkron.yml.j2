@@ -1,0 +1,13 @@
+server: true
+bootstrap-expect: 3
+node-name: "{{ inventory_hostname }}"
+# "role" is reserved by Dkron itself (every node reports role=dkron); a custom
+# tag using that key gets silently overridden, so this uses "pool" instead.
+tags:
+  pool: scheduler
+bind-addr: "0.0.0.0:8946"
+advertise-addr: "{{ ansible_host }}"
+retry-join:
+  - "{{ hostvars['big-slice-01'].ansible_host }}"
+  - "{{ hostvars['small-slice-01'].ansible_host }}"
+  - "{{ hostvars['small-slice-02'].ansible_host }}"

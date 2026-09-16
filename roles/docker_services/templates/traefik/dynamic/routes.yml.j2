@@ -17,6 +17,14 @@ http:
         certResolver: cloudflare
       service: adguard2
 
+    dkron:
+      rule: "Host(`dkron.eastie.boston`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: cloudflare
+      service: dkron
+
     homeassistant:
       rule: "Host(`homeassistant.eastie.boston`)"
       entryPoints:
@@ -91,6 +99,19 @@ http:
       loadBalancer:
         servers:
           - url: "http://{{ hostvars['small-slice-02']['ansible_host'] }}:3000"
+
+    dkron:
+      loadBalancer:
+        # Every Dkron server node serves the UI/API and forwards writes to the
+        # current Raft leader over gRPC, so any healthy node can take traffic.
+        healthCheck:
+          path: /health
+          interval: 10s
+          timeout: 3s
+        servers:
+          - url: "http://{{ hostvars['big-slice-01']['ansible_host'] }}:8081"
+          - url: "http://{{ hostvars['small-slice-01']['ansible_host'] }}:8081"
+          - url: "http://{{ hostvars['small-slice-02']['ansible_host'] }}:8081"
 
     homeassistant:
       loadBalancer:

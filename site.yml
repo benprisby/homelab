@@ -23,6 +23,44 @@
   tags:
     - deploy
 
+- name: Register Dkron jobs
+  hosts: big-slice-01
+  gather_facts: false
+  tasks:
+    - name: Register Dkron jobs
+      vars:
+        dkron_job_headers:
+          - "Accept: application/vnd.github+json"
+          - "X-GitHub-Api-Version: 2026-03-10"
+          - "Content-Type: application/json"
+          - "Authorization: Bearer {{ vault_dkron_github_token }}"
+      ansible.builtin.uri:
+        url: "https://dkron.eastie.boston/v1/jobs"
+        method: POST
+        body_format: json
+        status_code: [200, 201]
+        body:
+          name: "{{ item.name }}"
+          schedule: "{{ item.schedule }}"
+          timezone: "{{ item.timezone }}"
+          tags:
+            pool: "scheduler:1" # Single node only
+          executor: http
+          executor_config:
+            method: POST
+            url: "https://api.github.com/repos/{{ item.repo }}/actions/workflows/{{ item.workflow }}/dispatches"
+            headers: "{{ dkron_job_headers | to_json }}"
+            body: "{{ {'ref': 'main', 'inputs': item.inputs} | to_json }}"
+            timeout: "30"
+            expectCode: "200"
+      loop: "{{ dkron_jobs }}"
+      loop_control:
+        label: "{{ item.name }}"
+      delegate_to: localhost
+      no_log: true
+  tags:
+    - dkron
+
 - name: Configure NUT clients on all hosts
   hosts: all
   become: true

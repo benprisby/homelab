@@ -1,0 +1,11 @@
+---
+# Jobs registered with the self-hosted Dkron cluster (see the "Register Dkron jobs" task in site.yml)
+dkron_jobs:
+  # Rebuilds reidify.tv to pick up new YouTube uploads.
+  - name: trigger-reidify-build
+    schedule: "0 0 */1 * * *"
+    timezone: UTC
+    repo: benprisby/reidify
+    workflow: build.yml
+    inputs:
+      triggered_by: dkron

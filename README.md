@@ -34,6 +34,7 @@ services are deployed on each server.
 - **Backup Agents**: Nightly volume backups to NAS for select services on each server
 - **Code Server**: Browser-based VS Code
 - **ConvertX**: Multi-format file and media conversion
+- **Dkron**: Clustered job scheduler
 - **Docker Proxy**: Secure Docker API access
 - **draw.io**: Structured diagramming tool
 - **Excalidraw**: Freeform sketching and whiteboarding

@@ -11,6 +11,7 @@ docker_services:
   - backup-core
   - code-server
   - convertx
+  - dkron
   - drawio
   - excalidraw
   - handbrake
