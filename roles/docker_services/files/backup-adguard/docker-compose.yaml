@@ -1,7 +1,7 @@
 ---
 services:
   backup-adguard:
-    image: offen/docker-volume-backup:v2.49.0
+    image: offen/docker-volume-backup:v2.49.1
     container_name: backup-adguard
     restart: unless-stopped
     environment:
