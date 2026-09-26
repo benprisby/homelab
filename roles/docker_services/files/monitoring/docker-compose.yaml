@@ -1,7 +1,7 @@
 ---
 services:
   prometheus:
-    image: prom/prometheus:v3.14.0
+    image: prom/prometheus:v3.15.0
     container_name: prometheus
     restart: unless-stopped
     volumes:
@@ -163,7 +163,7 @@ services:
       - monitoring
 
   alloy:
-    image: grafana/alloy:v1.19.2
+    image: grafana/alloy:v1.20.0
     container_name: alloy
     restart: unless-stopped
     network_mode: host
