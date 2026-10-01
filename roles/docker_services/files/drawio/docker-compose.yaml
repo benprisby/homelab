@@ -1,7 +1,7 @@
 ---
 services:
   drawio:
-    image: jgraph/drawio:31.4.6
+    image: jgraph/drawio:31.5.3
     container_name: drawio
     restart: unless-stopped
     networks:
