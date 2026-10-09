@@ -1,7 +1,7 @@
 ---
 services:
   dkron:
-    image: dkron/dkron:4.2.0
+    image: dkron/dkron:4.2.1
     container_name: dkron
     restart: unless-stopped
     ports:
