@@ -1,4 +1,4 @@
-FROM node:24-alpine AS build
+FROM node:26-alpine AS build
 
 # renovate: datasource=git-refs depName=https://github.com/GoogleChromeLabs/squoosh currentValue=dev
 ARG SQUOOSH_COMMIT=e8d35e0fb66eb16eff6fe8fc773eabcbb7128de3
