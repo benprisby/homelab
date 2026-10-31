@@ -16,7 +16,7 @@ services:
       - nut
 
   peanut:
-    image: brandawg93/peanut:6.1.0
+    image: brandawg93/peanut:6.1.2
     container_name: peanut
     restart: unless-stopped
     volumes:
