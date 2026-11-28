@@ -1,7 +1,7 @@
 ---
 services:
   node-exporter:
-    image: prom/node-exporter:v1.12.1
+    image: prom/node-exporter:v1.13.1
     container_name: node-exporter
     network_mode: host
     pid: host
@@ -34,7 +34,7 @@ services:
       - monitoring
 
   alloy:
-    image: grafana/alloy:v1.20.1
+    image: grafana/alloy:v1.22.0
     container_name: alloy
     restart: unless-stopped
     network_mode: host
